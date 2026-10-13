@@ -1,0 +1,11 @@
+.cmd {
+  margin: 0 0 var(--space-lg);
+  overflow-wrap: anywhere;
+
+  @media (max-width: 767px) {
+    margin-bottom: var(--space-md);
+  }
+  @media (max-height: 520px) {
+    margin-bottom: var(--space-xs);
+  }
+}

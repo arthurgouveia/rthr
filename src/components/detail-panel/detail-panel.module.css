@@ -1,0 +1,109 @@
+/* The card that floats over a list. Positioned against <main>; a full-screen sheet on phones. */
+
+.detail {
+  container-type: inline-size;
+  position: absolute;
+  z-index: var(--z-card);
+  /* right edge lines up with the content column (see :where(.view) in base.css), never closer than --space-lg to the window */
+  inset: var(--space-lg) max(var(--space-lg), calc(100% - var(--pad-x) - var(--content-w))) var(--space-lg) auto;
+  width: min(var(--detail-w), calc(100% - 2 * var(--space-lg)));
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  overflow-y: auto;
+  background: var(--bg);
+  border: var(--rule-solid);
+  box-shadow: var(--shadow);
+  &:focus-visible {
+    outline: none;
+  }
+  @media (max-width: 767px) {
+    inset: 0;
+    width: auto;
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-md);
+    border-width: 0;
+    box-shadow: none;
+  }
+}
+.close {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  width: var(--tap);
+  height: var(--tap);
+  color: var(--muted);
+  font-size: var(--text-md);
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+/* Content shared by the work and project cards. */
+
+/* Shrinks to fit the longest word (--chars, set per card): ~0.45em per Pirata glyph, so names never break mid-word. */
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: min(var(--text-display-sm), calc(100cqi / (var(--chars, 10) * 0.45)));
+  line-height: var(--lh-display);
+  color: var(--strong);
+  overflow-wrap: break-word;
+}
+.kv {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  row-gap: var(--space-sm);
+  column-gap: var(--space-md);
+  font-size: var(--text-base);
+  & dd {
+    margin: 0;
+  }
+}
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-md) 0 0;
+  border-top: var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  line-height: var(--lh-body);
+  color: var(--soft);
+  & li {
+    display: flex;
+    gap: var(--space-sm);
+    &::before {
+      content: "›";
+      color: var(--accent);
+    }
+  }
+}
+.desc {
+  margin: 0;
+  line-height: var(--lh-body);
+  color: var(--soft);
+}
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  & div {
+    padding: var(--space-md) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  & dt {
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  & dd {
+    margin: 0;
+  }
+}

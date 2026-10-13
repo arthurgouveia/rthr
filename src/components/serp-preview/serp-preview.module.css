@@ -1,0 +1,42 @@
+/* A search result mock-up, drawn with the site's own tokens rather than Google's exact styles. */
+.list {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: var(--detail-w);
+  padding: var(--space-lg);
+  margin: 0;
+  list-style: none;
+}
+.result {
+  display: grid;
+  gap: var(--space-xs);
+}
+.url,
+.title,
+.description {
+  margin: 0;
+}
+.url {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.title {
+  color: var(--accent);
+  font-size: var(--text-lg);
+  line-height: var(--lh-ui);
+  text-decoration: underline;
+  text-underline-offset: var(--underline-offset);
+}
+.description {
+  color: var(--soft);
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
+}
+.problems {
+  padding: 0 0 0 var(--space-md);
+  margin: 0;
+  color: var(--strong);
+  font-size: var(--text-sm);
+  border-left: var(--border-thick) solid var(--accent);
+  list-style: none;
+}

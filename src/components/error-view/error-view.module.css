@@ -1,0 +1,50 @@
+/* 404 and 500 pages: a huge status code and a line of copy, with the bat patrolling behind. */
+
+.area {
+  /* uses the full width, unlike regular pages */
+  max-width: none;
+}
+/* the patrol ground: fills the page body, centres the copy, and is what the bat listens to */
+.fill {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+}
+.lost {
+  position: relative;
+  z-index: 1; /* above the bat */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  pointer-events: none;
+}
+.code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  color: var(--strong);
+  line-height: var(--lh-display);
+  font-size: min(calc(var(--text-display-lg) * 1.6), 34cqi);
+  @media (max-height: 520px) {
+    font-size: min(calc(var(--text-display-lg) * 1.6), 34cqi, 24dvh);
+  }
+}
+.message {
+  margin: 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.home {
+  align-self: center;
+  margin-top: var(--space-sm);
+  pointer-events: auto;
+  & .prompt {
+    margin-right: var(--space-sm);
+  }
+}
