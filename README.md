@@ -11,7 +11,7 @@ My goth-like terminal cv kind of thing. 🦇
 ![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=flat-square&logo=storybook&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white)
 
-A four-page terminal-style portfolio (`index.md`, `work.log`, `projects/`, `summon.sh`), dark by default, with a live token editor, four accent reds, CSS-only typing, an ASCII bat on the 404 and a floating detail card. Every page fits one screen.
+A four-page terminal-style portfolio (`index.md`, `work.log`, `projects/`, `summon.sh`), dark by default, with a live token editor, three accent colours (blood, flame, saffron), CSS-only typing, an ASCII bat on the 404 and a floating detail card. Every page fits one screen.
 
 ## Quick start
 
@@ -20,7 +20,7 @@ npm install          # also installs the git hooks
 npm run dev          # http://localhost:3000
 ```
 
-Needs Node 24 (see `.nvmrc`; 20.9 or newer works). Preview flags for screenshots: `?static=1` (no animation), `?theme=lame`, `?red=ember`, `?tokens=1&tab=spacing`.
+Needs Node 24 (see `.nvmrc`; 20.9 or newer works). Preview flags for screenshots: `?static=1` (no animation), `?theme=lame`, `?accent=flame`, `?tokens=1&tab=spacing`.
 
 | Script | What it does |
 |---|---|
@@ -36,8 +36,8 @@ Needs Node 24 (see `.nvmrc`; 20.9 or newer works). Preview flags for screenshots
 ## How it is built
 
 - **Content:** all copy lives in `src/content/content.json`.
-- **Design system:** `src/styles/tokens.css` holds the tokens as CSS variables (colours per theme, four reds, spacing, type, motion); `base.css` is the reset and helpers; every component has a `*.module.css` next to it. A test fails on raw colours or undocumented breakpoints.
-- **Theme:** `data-theme` (dark or lame) and `data-red` on `<html>`, set before first paint by `src/lib/boot-script.ts`.
+- **Design system:** `src/styles/tokens.css` holds the tokens as CSS variables (colours per theme, three accents, spacing, type, motion); `base.css` is the reset and helpers; every component has a `*.module.css` next to it. A test fails on raw colours or undocumented breakpoints.
+- **Theme:** `data-theme` (dark or lame) and `data-accent` on `<html>`, set before first paint by `src/lib/boot-script.ts`.
 - **Typing effect:** pure CSS (`src/styles/typing.module.css`), so the text is in the page from the start.
 - **Fonts:** Pirata One and JetBrains Mono through `next/font/google`, self-hosted at build.
 - **Structure:** App Router, no barrel files, kebab-case files, named exports, `@/` alias for `src/`.
@@ -70,4 +70,4 @@ fix(footer): keep est. on one line
 
 ## Deploying
 
-Two Vercel projects from this repo: the site, and Storybook (Framework Preset `Other`, Build Command `npm run build-storybook`, Output Directory `storybook-static`). Set `NEXT_PUBLIC_SITE_URL` (see `.env.example`) once the domain is final. Preview deploys are `noindex`.
+Two Vercel projects from this repo: the site, and Storybook (Framework Preset `Other`, Build Command `npm run build-storybook`, Output Directory `storybook-static`). Set `NEXT_PUBLIC_SITE_URL` (see `.env.example`) once the domain is final, and `NEXT_PUBLIC_GA_ID` for Google Analytics (production only; leave it empty to switch it off). Preview deploys are `noindex`.
