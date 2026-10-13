@@ -1,0 +1,307 @@
+{
+  "site": {
+    "name": "Arthur Gouveia",
+    "user": "arthur@gouveia",
+    "home": "~/arthur",
+    "role": "front-end developer",
+    "location": "paraíba, br",
+    "established": "MCMLXXXVII",
+    "links": {
+      "github": "https://github.com/arthurgouveia",
+      "linkedin": "https://www.linkedin.com/in/arthurgouveiaweb/",
+      "repo": "https://github.com/arthurgouveia/rthr"
+    }
+  },
+  "pages": [
+    {
+      "id": "index",
+      "num": "00",
+      "file": "index.md",
+      "tab": "index",
+      "command": "whoami",
+      "status": "PRESENTING",
+      "path": "/",
+      "title": "Arthur Gouveia",
+      "description": "Arthur Gouveia, front-end developer. Careful, accessible interfaces."
+    },
+    {
+      "id": "work",
+      "num": "01",
+      "file": "work.log",
+      "tab": "work",
+      "command": "cat work.log",
+      "status": "LOGGING",
+      "path": "/work",
+      "title": "Work history",
+      "description": "Roles, stacks and highlights from over two decades of software development, mostly front-end."
+    },
+    {
+      "id": "projects",
+      "num": "02",
+      "file": "projects/",
+      "tab": "projects",
+      "command": "ls -l projects/ --sort=stars",
+      "status": "BUILDING",
+      "path": "/projects",
+      "title": "Open-source projects",
+      "description": "Open-source projects by Arthur Gouveia, sorted by GitHub stars: prettyCheckable, bebop and more."
+    },
+    {
+      "id": "contact",
+      "num": "03",
+      "file": "summon.sh",
+      "tab": "summon",
+      "command": "./summon.sh",
+      "status": "SUMMONING",
+      "path": "/contact",
+      "title": "Contact",
+      "description": "Get in touch with Arthur Gouveia by email, GitHub or LinkedIn."
+    }
+  ],
+  "index": {
+    "tagline": "software developer for over two decades, mostly front-end. carefully builds scalable & accessible interfaces.",
+    "status": [
+      {
+        "key": "employer",
+        "value": "Scale Computing"
+      },
+      {
+        "key": "previously",
+        "value": "Shopify"
+      },
+      {
+        "key": "devoted_to",
+        "value": "front-end, design systems, accessibility"
+      },
+      {
+        "key": "fuel",
+        "value": "coffee, risky sports & music. order may vary"
+      }
+    ]
+  },
+  "work": {
+    "jobs": [
+      {
+        "slug": "scale-computing",
+        "company": "Scale Computing",
+        "role": "senior software developer",
+        "period": "2025 — now",
+        "status": "in-progress",
+        "stack": "react, typescript, mui, tailwind, storybook, playwright, gitlab ci/cd",
+        "notes": [
+          "builds customer-facing web apps on scale’s platform: secure identity and access, admin consoles, real-time operational views",
+          "implemented the company’s first shared design system, working closely with designers",
+          "designs api specs shared across teams and automates best practices: linting, strict types, git hooks, automated releases"
+        ]
+      },
+      {
+        "slug": "shopify",
+        "company": "Shopify",
+        "role": "senior front end developer",
+        "period": "2015 — 2024",
+        "status": "done",
+        "stack": "typescript, react, graphql, apollo, ruby on rails, webpack, storybook, jest",
+        "notes": [
+          "worked on critical public-facing areas like checkout, plus subscriber-facing ones like email",
+          "managed a small team of front end developers and helped evolve polaris, shopify’s open source ui kit",
+          "interviewed candidates and crafted pair programming challenges"
+        ]
+      },
+      {
+        "slug": "reliant-solutions",
+        "company": "Reliant Solutions",
+        "role": "software engineer",
+        "period": "2014 — 2015",
+        "status": "done",
+        "stack": "backbone.js, zurb foundation, embedded build tooling",
+        "notes": [
+          "upgraded the ui/ux of every application with a customised zurb foundation framework",
+          "refactored the ux of all app views, customising backbone.js usage across the codebase",
+          "designed the build system for embedded devices with low storage and performance limits"
+        ]
+      },
+      {
+        "slug": "guestful",
+        "company": "Guestful",
+        "role": "front-end web developer",
+        "period": "2013",
+        "status": "done",
+        "stack": "html5, css3, javascript, jquery, handlebars.js, node.js, grunt, compass, zurb foundation",
+        "notes": [
+          "took care of responsive, bulletproof front-end development for the company’s apps"
+        ]
+      },
+      {
+        "slug": "bracket-army",
+        "company": "Bracket Army",
+        "role": "co-founder and front end developer",
+        "period": "2012 — 2015",
+        "status": "done",
+        "stack": "varied, per client",
+        "notes": [
+          "led the management and technical aspects of the company alongside another business partner, working with clients from multiple cities in brazil, as well as abroad",
+          "built websites, features, apps and updates to products for companies such as redbull, singer, renner, dzam, farm, boobox and many others, using the latest available tech or adapting from the customer’s own codebase"
+        ]
+      },
+      {
+        "slug": "high-level-it",
+        "company": "High Level I.T.",
+        "role": "head front-end developer",
+        "period": "2012",
+        "status": "done",
+        "stack": "jquery, ruby on rails",
+        "notes": [
+          "responsible for the whole front-end of all the company’s applications",
+          "minor back-end tweaks along the way"
+        ]
+      },
+      {
+        "slug": "cakemail",
+        "company": "CakeMail",
+        "role": "web developer",
+        "period": "2011 — 2012",
+        "status": "done",
+        "stack": "php, jquery, python",
+        "notes": [
+          "developed modules for the main application, mostly in php and jquery",
+          "wrote api unit tests in python",
+          "built an internationalisation tool for the company’s apps and handled web dev support"
+        ]
+      },
+      {
+        "slug": "justlexit",
+        "company": "JUSTLEXIT",
+        "role": "front-end web developer",
+        "period": "2011 — 2012",
+        "status": "done",
+        "stack": "jquery, underscore.js",
+        "notes": [
+          "worked part-time, responsible for the interface interactions",
+          "based in montréal at the time"
+        ]
+      },
+      {
+        "slug": "incite",
+        "company": "Incite",
+        "role": "junior web designer / developer",
+        "period": "2009 — 2011",
+        "status": "done",
+        "stack": "html, css, javascript, wordpress, expression engine",
+        "notes": [
+          "coded photoshop designs into html, css and js",
+          "integrated the result with cms platforms like wordpress and expression engine",
+          "based in edmonton at the time"
+        ]
+      },
+      {
+        "slug": "overhaul-media",
+        "company": "Overhaul Media",
+        "role": "freelance web developer",
+        "period": "2010 — 2011",
+        "status": "done",
+        "stack": "html, css, javascript, wordpress, shopify",
+        "notes": [
+          "coded photoshop designs into html, css and js",
+          "integrated them with wordpress and shopify",
+          "based in edmonton at the time"
+        ]
+      },
+      {
+        "slug": "miti-tecnologia",
+        "company": "miti tecnologia",
+        "role": "programmer, previously intern",
+        "period": "2008 — 2009",
+        "status": "done",
+        "stack": "java, perl, python",
+        "notes": [
+          "built the java web version, front and back end, of a desktop app for recording conferences and interviews",
+          "as an intern, replaced a set of perl news-capture scripts with a single python script",
+          "trained the other interns to use it"
+        ]
+      },
+      {
+        "slug": "lojas-maia",
+        "company": "Lojas Maia",
+        "role": "intern",
+        "period": "2007 — 2008",
+        "status": "done",
+        "stack": "java",
+        "notes": [
+          "developed modules for the main application using the company’s private java framework"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "prettyCheckable",
+      "lang": "javascript",
+      "stars": 341,
+      "forks": 92,
+      "desc": "A jQuery plugin that replaces native checkboxes and radios with custom images — still my most-forked work.",
+      "href": "https://github.com/arthurgouveia/prettyCheckable"
+    },
+    {
+      "name": "bebop",
+      "lang": "css",
+      "stars": 24,
+      "forks": 3,
+      "desc": "An HTML5 and CSS3 boilerplate built on H5BP with Compass and Grunt, to kickstart and optimize the dev flow of simple sites and apps.",
+      "href": "https://github.com/arthurgouveia/bebop"
+    },
+    {
+      "name": "css-mix-blend-mode",
+      "lang": "css",
+      "stars": 19,
+      "forks": 1,
+      "desc": "A small demo of the CSS mix-blend-mode property.",
+      "href": "https://github.com/arthurgouveia/css-mix-blend-mode"
+    },
+    {
+      "name": "angular-yts",
+      "lang": "javascript",
+      "stars": 11,
+      "forks": 4,
+      "desc": "An Angular.js app over a public movie API, with a clean UI for general searches.",
+      "href": "https://github.com/arthurgouveia/angular-yts"
+    },
+    {
+      "name": "reeedr",
+      "lang": "typescript",
+      "stars": 1,
+      "forks": null,
+      "desc": "Pet project on books and stuff.",
+      "href": "https://github.com/arthurgouveia/reeedr"
+    },
+    {
+      "name": "youRepeat",
+      "lang": "web",
+      "stars": 1,
+      "forks": 2,
+      "desc": "Stupid and dead simple website to loop your favourite YouTube video.",
+      "href": "https://github.com/arthurgouveia/youRepeat"
+    }
+  ],
+  "contact": {
+    "heading": "Summon me",
+    "rows": [
+      {
+        "label": "mail",
+        "text": "hey@arthur.lol",
+        "href": "mailto:hey@arthur.lol",
+        "copy": true
+      },
+      {
+        "label": "github",
+        "text": "github.com/arthurgouveia ↗",
+        "href": "https://github.com/arthurgouveia"
+      },
+      {
+        "label": "linkedin",
+        "text": "in/arthurgouveiaweb ↗",
+        "href": "https://www.linkedin.com/in/arthurgouveiaweb/"
+      }
+    ],
+    "footnote": "> based in paraíba, br (utc-3)."
+  }
+}
