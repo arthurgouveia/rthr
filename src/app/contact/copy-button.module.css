@@ -1,0 +1,5 @@
+.copy {
+  composes: tapButton from "../../styles/ui.module.css";
+  border: var(--border) solid var(--muted);
+  color: var(--soft);
+}

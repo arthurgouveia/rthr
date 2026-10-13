@@ -1,0 +1,75 @@
+/* The projects table. The selectable-list and card styles are shared (list.module.css, detail-panel.module.css). */
+
+.head,
+.proj {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 110px 50px;
+  gap: var(--space-md);
+  align-items: baseline;
+}
+.head {
+  padding: 0 0 var(--space-sm);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+.proj {
+  padding: var(--space-md) 0;
+
+  &[aria-expanded="true"] .name {
+    color: var(--strong);
+  }
+  /* Phone: number · language and ★ stars on a line, the name below. */
+  @media (max-width: 767px) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-xs) var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: var(--rule);
+  }
+}
+.name {
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  @media (max-width: 767px) {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    font-size: var(--text-lg);
+  }
+}
+.num {
+  color: var(--muted);
+  @media (max-width: 767px) {
+    grid-row: 1;
+    font-size: var(--text-sm);
+  }
+}
+.lang {
+  color: var(--muted);
+  @media (max-width: 767px) {
+    grid-row: 1;
+    font-size: var(--text-sm);
+    &::before {
+      content: "·";
+      margin-right: var(--space-sm);
+    }
+  }
+}
+.stars {
+  @media (max-width: 767px) {
+    grid-row: 1;
+    grid-column: 3;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    &::before {
+      content: "★";
+      margin-right: var(--space-xs);
+      color: var(--accent);
+    }
+  }
+}

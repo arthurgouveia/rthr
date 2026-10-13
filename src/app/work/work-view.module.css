@@ -1,0 +1,66 @@
+/* One work-history row. The selectable-list and card styles are shared (list.module.css, detail-panel.module.css). */
+
+.job {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  align-items: baseline;
+
+  &[aria-expanded="true"] .company {
+    color: var(--strong);
+  }
+  @media (max-width: 767px) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-xs) var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: var(--rule);
+  }
+}
+.years {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  @media (max-width: 767px) {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+  @media (max-width: 767px) {
+    grid-column: 1 / -1;
+  }
+}
+.company {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+}
+.role {
+  font-size: var(--text-sm);
+  color: var(--soft);
+}
+/* Jira-style lozenge: filled for the current job, outlined for finished ones. */
+.state {
+  align-self: center;
+  justify-self: end;
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--rule-solid);
+  border-radius: var(--radius);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-caps);
+  white-space: nowrap;
+  color: var(--soft);
+  @media (max-width: 767px) {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+.inProgress {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
