@@ -1,0 +1,88 @@
+/* The frame: one screen, never scrolls as a page. --inset is the left edge of menu text; the top
+   bar, footer badge and sidebar labels share it. */
+
+.app {
+  --inset: calc(var(--space-md) + var(--space-lg));
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+
+  @media (max-width: 1199px) {
+    --inset: calc(var(--space-sm) + var(--space-lg));
+  }
+  @media (max-width: 767px) {
+    --inset: var(--space-md);
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+  /* Very short windows (zoomed in, or a phone with the keyboard open): scroll instead of squeezing. */
+  @media (max-height: 400px) {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+}
+
+/* global-error.tsx renders without the shell grid. */
+.appBare {
+  display: block;
+  & .main {
+    height: 100%;
+  }
+}
+
+.body {
+  min-height: 0;
+  display: flex;
+}
+
+.main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+  --pad-x: var(--space-2xl);
+  padding: var(--space-2xl) var(--pad-x) var(--space-xl);
+  /* On short screens the page scrolls inside <main> instead of running over the footer. */
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* <main> is only a programmatic focus target after navigation, so it gets no focus ring. */
+  &:focus-visible {
+    outline: none;
+  }
+  @media (max-width: 1199px) {
+    --pad-x: var(--space-xl);
+    padding: var(--space-xl) var(--pad-x) var(--space-lg);
+  }
+  @media (max-width: 767px) {
+    --pad-x: var(--space-md);
+    padding: var(--space-lg) var(--pad-x) 0;
+  }
+  /* Phones in landscape: tighter, so pages fit without scrolling. */
+  @media (max-height: 520px) {
+    --pad-x: var(--space-xl);
+    padding: var(--space-md) var(--pad-x) var(--space-xs);
+  }
+  @media (max-height: 400px) {
+    overflow: visible;
+  }
+}
+
+/* Page fade-out before navigating; the next page types and rises in on its own. */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  transition: opacity var(--duration-fast) ease;
+}
+.leaving {
+  opacity: 0;
+}

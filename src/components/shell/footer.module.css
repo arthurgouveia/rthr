@@ -1,0 +1,148 @@
+.statusbar {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0 var(--space-md) 0 var(--inset);
+  border-top: var(--rule-solid);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  min-width: 0;
+
+  @media (max-width: 767px) {
+    padding: 0 var(--space-sm) 0 var(--inset);
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+  overflow: hidden;
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+.badge {
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: var(--space-2xs) var(--space-sm);
+  font-weight: var(--weight-bold);
+}
+.version {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+  & a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--space-lg);
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset);
+    &:hover {
+      color: var(--strong);
+    }
+  }
+}
+.branch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg);
+}
+.branchIcon {
+  width: 1.2em;
+  height: 1.2em;
+  color: var(--accent);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  white-space: nowrap;
+  min-width: 0;
+  @media (max-width: 767px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+.accentLabel,
+.sep {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+.accents {
+  display: flex;
+}
+.option {
+  composes: tapButton from "../../styles/ui.module.css";
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--muted);
+  &[aria-pressed="true"] {
+    color: var(--strong);
+  }
+  &[aria-pressed="true"] .swatch {
+    outline-color: var(--accent);
+  }
+  /* swatch only: still a full-height hit area, narrower than --tap so three of them fit the footer */
+  @media (max-width: 1199px) {
+    width: calc(var(--tap) - var(--space-sm));
+    justify-content: center;
+    padding: 0;
+  }
+}
+/* the colour name; swatches alone below desktop */
+.accentName {
+  @media (max-width: 1199px) {
+    display: none;
+  }
+}
+.swatch {
+  width: var(--swatch);
+  height: var(--swatch);
+  outline: var(--border) solid transparent;
+  outline-offset: var(--space-2xs);
+  &[data-accent="blood"] {
+    background: var(--accent-blood);
+  }
+  &[data-accent="flame"] {
+    background: var(--accent-flame);
+  }
+  &[data-accent="saffron"] {
+    background: var(--accent-saffron);
+  }
+  @media (max-width: 767px) {
+    width: var(--swatch-lg);
+    height: var(--swatch-lg);
+    outline-offset: var(--space-xs);
+  }
+}
+.customize {
+  composes: tapButton from "../../styles/ui.module.css";
+  color: var(--accent);
+  &:hover,
+  &[aria-expanded="true"] {
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset);
+  }
+  @media (max-width: 767px) {
+    padding: 0 var(--space-xs);
+  }
+}
+
+/* Forced colours drop backgrounds; keep the swatches visible. */
+@media (forced-colors: active) {
+  .swatch {
+    forced-color-adjust: none;
+  }
+}

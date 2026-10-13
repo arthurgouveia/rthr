@@ -1,0 +1,32 @@
+.topbar {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0 var(--space-sm) 0 var(--inset);
+  border-bottom: var(--rule-solid);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  min-width: 0;
+}
+.crumb {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  & b {
+    font-weight: var(--weight-regular);
+    color: var(--fg);
+  }
+}
+.user {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+.themeButton {
+  composes: tapButton from "../../styles/ui.module.css";
+  color: var(--muted);
+  white-space: nowrap;
+}
