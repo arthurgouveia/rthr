@@ -1,0 +1,24 @@
+/* The selectable list shared by work and projects, with the card it opens floating on top. */
+
+.split {
+  /* full width, so the list's scrollbar sits at the page edge; the rows themselves are capped (see .plain) */
+  max-width: none;
+}
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* On the right the list reaches into <main>'s padding, so the scrollbar is at the page edge and
+     the rows stay clear of it. */
+  margin-left: calc(-1 * var(--space-sm));
+  padding-left: var(--space-sm);
+  margin-right: calc(-1 * var(--pad-x));
+  padding-right: var(--pad-x);
+}
+.plain {
+  max-width: var(--content-w);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

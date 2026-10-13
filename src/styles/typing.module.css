@@ -1,0 +1,96 @@
+/* The "typed in a terminal" effect, in CSS only. The text is always in the page (so crawlers and
+   screen readers get it at once); the animation just reveals it one character at a time.
+
+   Inline variables, set by the component:
+     --n   number of characters
+     --at  start delay, in typing ticks (1 tick = --duration-type)
+   Monospace text, so width is exactly --n * 1ch. */
+
+.typed {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--n) * 1ch);
+  animation: type calc(var(--n) * var(--duration-type)) steps(var(--n))
+    calc(var(--at, 0) * var(--duration-type)) backwards;
+}
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+/* The block cursor. .cursor blinks while its text is typed, then goes away (--linger adds ticks
+   after); .cursorStays appears at --at and stays (the final prompt). */
+.cursor,
+.cursorStays {
+  display: inline-block;
+  width: var(--cursor-w);
+  height: var(--cursor-h);
+  vertical-align: -0.2em;
+  background: var(--accent);
+  visibility: hidden;
+}
+.cursor {
+  animation:
+    visible calc((var(--n) + var(--linger, 0)) * var(--duration-type))
+      calc(var(--at, 0) * var(--duration-type)) forwards,
+    blink 1s steps(1) infinite;
+}
+.cursorStays {
+  animation:
+    stay 0s calc(var(--at, 0) * var(--duration-type)) forwards,
+    blink 1s steps(1) 6;
+}
+/* The hidden keyframe sits just before 100%: durations are computed in floating point, so an
+   animation can finish at 99.99999%, and a keyframe exactly at 100% would never apply. */
+@keyframes visible {
+  0%,
+  98% {
+    visibility: visible;
+  }
+  98.01%,
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes stay {
+  to {
+    visibility: visible;
+  }
+}
+
+/* Forced colours drop backgrounds; draw the cursor in a system colour instead. */
+@media (forced-colors: active) {
+  .cursor,
+  .cursorStays {
+    background: Highlight;
+  }
+}
+
+/* Hidden until --at, then simply there. */
+.appear {
+  animation: appear 0s calc(var(--at, 0) * var(--duration-type)) backwards;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Fades in at --at. */
+.fadeIn {
+  animation: fadeIn var(--duration-base) ease calc(var(--at, 0) * var(--duration-type)) backwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

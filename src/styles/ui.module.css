@@ -1,0 +1,18 @@
+/* Small shared pieces used by more than one component. */
+
+.btnOutline {
+  align-self: flex-start;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-md);
+  border: var(--border) solid var(--accent);
+  color: var(--accent);
+}
+
+/* A small text button that still has a full-size hit area. Callers set the colour. */
+.tapButton {
+  min-height: var(--tap);
+  padding: 0 var(--space-sm);
+  font-size: var(--text-sm);
+}

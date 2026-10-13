@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Arthur Gouveia — design tokens
+   Theme:  <html data-theme="dark|lame">   (default: dark)
+   Accent: <html data-accent="blood|flame|saffron">   (default: blood)
+
+   Breakpoints. CSS variables cannot be used in @media conditions, so these four values are
+   repeated literally; this table is the single list of them (a test checks nothing else appears).
+     max-width: 767px    phone: tab bar instead of the sidebar, full-screen detail card
+     max-width: 1199px   tablet: narrower sidebar and page padding, swatch-only accent picker
+     max-height: 520px   short screens (phones in landscape): tighter chrome, smaller display type
+     max-height: 400px   very short (zoomed in): the page scrolls instead of squeezing
+   Layout variables set by the shell and read by the pages: --inset (left edge of menu text),
+   --pad-x (horizontal page padding). Both are defined on .app / .main in shell.module.css.
+   ========================================================================== */
+
+:root {
+  /* ---- Type families ---- */
+  --font-display: var(--font-pirata-one), serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ---- Type scale (desktop): 7 sizes ---- */
+  --text-display-lg: 156px; /* name, "Summon me." — Pirata One */
+  --text-display-sm: 64px; /* detail card headings — Pirata One */
+  --text-lg: 22px; /* company names, contact rows */
+  --text-md: 16px; /* tagline */
+  --text-base: 14px; /* body */
+  --text-sm: 12px; /* bars, meta, buttons */
+  --text-xs: 11px; /* table headers, stat labels */
+  --lh-display: 0.9;
+  --lh-ui: 1.5; /* body default */
+  --lh-body: 1.7; /* running text */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --tracking-caps: 0.14em;
+
+  /* ---- Spacing scale: 7 steps — every gap, padding and margin uses one ---- */
+  --space-2xs: 2px; /* half step: hairline gaps */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+
+  /* ---- Layout ---- */
+  --tap: 44px; /* minimum hit area, also the height of the top and footer bars */
+  --sidebar-w: 260px;
+  --sidebar-w-compact: 210px; /* tablet */
+  --content-w: 1024px; /* widest the page content grows, so it stays near the sidebar on big monitors */
+  --detail-w: 600px;
+  --border: 1px;
+  --border-thick: 2px; /* active-item indicators */
+  --rule: var(--border) dashed var(--line);
+  --rule-solid: var(--border) solid var(--line);
+  --focus-ring: var(--border-thick) dashed currentColor;
+  --focus-offset: 2px;
+  --underline-offset: 3px;
+  --control-h: 32px; /* inputs in the customize panel */
+  --swatch: 10px; /* colour swatches */
+  --swatch-lg: 12px; /* ... on phone */
+  --cursor-w: 0.6em; /* the typing block cursor */
+  --cursor-h: 1.1em;
+  --z-card: 5; /* detail card */
+  --z-panel: 10; /* customize panel */
+  --z-skip: 20; /* skip link */
+  --shadow: 0 24px 48px rgb(0 0 0 / 0.35);
+  --shadow-up: 0 -24px 48px rgb(0 0 0 / 0.35);
+  --radius: 4px; /* status lozenges */
+
+  /* ---- Motion: 5 durations ---- */
+  --duration-type: 55ms; /* one typed character */
+  --duration-fast: 200ms; /* row hover, page fade-out */
+  --duration-base: 400ms; /* value fade, theme cross-fade */
+  --duration-slow: 500ms; /* page content rise-in */
+  --duration-chase: 600ms; /* the bat easing toward the pointer */
+  --shift: 8px; /* row hover offset */
+}
+
+/* ---- Dark (default) ---- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d0c0a;
+  --fg: #d8cfbd;
+  --strong: #ede5d3;
+  --soft: #b9b09e;
+  --muted: #8c8473;
+  --line: #2b2620;
+  --active: #1c1915;
+  --accent-blood: #e0473c;
+  --accent-flame: #f2762e;
+  --accent-saffron: #f0b429;
+}
+
+/* ---- Lame (the light theme) ---- */
+:root[data-theme="lame"] {
+  color-scheme: light;
+  --bg: #f1ece2;
+  --fg: #2a251f;
+  --strong: #12100d;
+  --soft: #4a443b;
+  --muted: #655d51;
+  --line: #d8d0c1;
+  --active: #e5ded0;
+  --accent-blood: #a3241b;
+  --accent-flame: #a9470a;
+  --accent-saffron: #8a6100;
+}
+
+/* ---- Accent: one of the three accents, whichever theme is active ---- */
+:root {
+  --accent: var(--accent-blood);
+  --on-accent: var(--bg); /* text on accent fills (badge, lozenge) */
+}
+:root[data-accent="flame"] {
+  --accent: var(--accent-flame);
+}
+:root[data-accent="saffron"] {
+  --accent: var(--accent-saffron);
+}
+
+/* ---- Phone overrides (≤ 767px) ---- */
+@media (max-width: 767px) {
+  :root {
+    --text-display-lg: 84px;
+    --text-display-sm: 48px;
+    --text-lg: 18px;
+    --text-md: 13px;
+    --text-base: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-type: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --shift: 0px;
+  }
+}
