@@ -47,7 +47,7 @@ test('theme and accent are remembered across reloads', async ({ page }) => {
 });
 
 test('the detail card opens, closes on Escape and returns focus to its row', async ({ page }) => {
-  await page.goto('/work?static=1');
+  await page.goto('/projects?static=1');
   const row = page.locator('[data-detail-trigger]').nth(1);
   await row.click();
   const card = page.getByRole('dialog').first();

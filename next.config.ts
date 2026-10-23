@@ -23,6 +23,9 @@ const config: NextConfig = {
   env: {
     NEXT_PUBLIC_APP_VERSION: pkg.version,
     NEXT_PUBLIC_GIT_BRANCH: branch(),
+    // The month of this build (YYYY-MM): what "now" means when the timeline counts a current job.
+    // Fixed at build so the server and the browser always agree on the text.
+    NEXT_PUBLIC_BUILD_MONTH: new Date().toISOString().slice(0, 7),
   },
   // The old arthurgouveia.com / .com.br sites redirect here (see src/lib/legacy-redirects.ts).
   async redirects() {

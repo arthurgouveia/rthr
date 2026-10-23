@@ -51,11 +51,26 @@ describe('content.json', () => {
     expect(JSON.stringify(content)).not.toMatch(/\[[A-Z ]+\]/);
   });
 
-  it('gives jobs unique slugs, a valid status, and exactly one in progress', () => {
+  it('gives every job and earlier role a unique slug, and valid dates', () => {
+    const { jobs, earlier } = content.work;
+    const slugs = [...jobs.map((j) => j.slug), ...earlier.roles.map((r) => r.slug)];
+    expect(new Set(slugs).size).toBe(slugs.length);
+    const date = /^\d{4}(-(0[1-9]|1[0-2]))?$/;
+    const dates = [
+      ...jobs.flatMap((j) => j.roles.flatMap((r) => [r.start, r.end ?? '2000'])),
+      ...earlier.roles.flatMap((r) => [r.start, r.end]),
+    ];
+    for (const d of dates) expect(d).toMatch(date);
+  });
+
+  it('has exactly one current job, the first, and its roles run newest first', () => {
     const { jobs } = content.work;
-    expect(new Set(jobs.map((j) => j.slug)).size).toBe(jobs.length);
-    expect(jobs.every((j) => ['in-progress', 'done'].includes(j.status))).toBe(true);
-    expect(jobs.filter((j) => j.status === 'in-progress')).toHaveLength(1);
+    expect(jobs.filter((j) => j.roles.some((r) => !r.end))).toHaveLength(1);
+    expect(jobs[0].roles[0].end).toBeUndefined();
+    for (const job of jobs) {
+      const starts = job.roles.map((r) => r.start);
+      expect(starts).toEqual([...starts].sort().reverse());
+    }
   });
 
   it('links every project and contact row to a real URL', () => {

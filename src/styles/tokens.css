@@ -49,6 +49,7 @@
   --sidebar-w-compact: 210px; /* tablet */
   --content-w: 1024px; /* widest the page content grows, so it stays near the sidebar on big monitors */
   --detail-w: 600px;
+  --timeline-meta: 240px; /* the date column of the work timeline */
   --border: 1px;
   --border-thick: 2px; /* active-item indicators */
   --rule: var(--border) dashed var(--line);

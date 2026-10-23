@@ -1,0 +1,25 @@
+.company {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+}
+.role {
+  margin: 0 0 var(--space-xs);
+  font-weight: var(--weight-bold);
+  color: var(--strong);
+}
+.when {
+  margin-left: var(--space-sm);
+  font-weight: var(--weight-regular);
+  color: var(--muted);
+}
+.summary {
+  margin: var(--space-md) 0;
+  line-height: var(--lh-body);
+  color: var(--fg);
+}
+/* the lists below the summary sit a step apart */
+.summary + * {
+  margin-bottom: var(--space-md);
+}

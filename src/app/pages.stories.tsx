@@ -26,7 +26,6 @@ const page = (pathname: string, view: PageProps['view']) => ({
   parameters: { pathname },
 });
 
-const job = content.work.jobs[1];
 const project = content.projects.find((p) => p.name.includes('-')) ?? content.projects[0];
 
 export const Home: Story = page('/', HomeView);
@@ -38,16 +37,6 @@ export const HomeLameFlame: Story = {
 };
 
 export const Work: Story = page('/work', WorkView);
-
-export const WorkDetailOpen: Story = {
-  ...page('/work', WorkView),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(await canvas.findByRole('button', { name: new RegExp(job.company) }));
-    const card = await canvas.findByRole('dialog', { name: job.company });
-    await waitFor(() => expect(card).toBeVisible()); // it fades in
-  },
-};
 
 export const Projects: Story = page('/projects', ProjectsView);
 

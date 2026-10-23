@@ -1,0 +1,100 @@
+.timeline {
+  max-width: var(--content-w);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Spacing lives on .meta and .body, not on the entry, so the rail (and its line) runs unbroken
+   from one entry to the next. Up to 1199px the date column moves above the details: beside them it
+   would leave the details too narrow once the sidebar has taken its share. */
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, var(--timeline-meta)) var(--space-xl) minmax(0, 1fr);
+  --dot-top: var(--space-sm);
+  @media (max-width: 1199px) {
+    grid-template-columns: var(--space-lg) minmax(0, 1fr);
+  }
+}
+.meta {
+  padding: 0 var(--space-md) var(--space-xl) 0;
+  text-align: right;
+  @media (max-width: 1199px) {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0 0 var(--space-sm);
+    text-align: left;
+  }
+}
+.body {
+  min-width: 0;
+  padding-bottom: var(--space-xl);
+  @media (max-width: 1199px) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+.rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  @media (max-width: 1199px) {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    justify-content: flex-start;
+  }
+  /* the line, from the first dot to the last */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - var(--border) / 2);
+    width: var(--border);
+    background: var(--line);
+    @media (max-width: 1199px) {
+      left: calc(var(--swatch-lg) / 2 - var(--border) / 2);
+    }
+  }
+}
+.entry:first-child .rail::before {
+  top: calc(var(--dot-top) + var(--swatch-lg) / 2);
+}
+.entry:last-child .rail::before {
+  bottom: auto;
+  height: calc(var(--dot-top) + var(--swatch-lg) / 2);
+}
+.entry:first-child:last-child .rail::before {
+  display: none;
+}
+.dot {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--swatch-lg);
+  height: var(--swatch-lg);
+  margin-top: var(--dot-top);
+  border: var(--border-thick) solid var(--muted);
+  border-radius: 50%;
+  background: var(--bg);
+  .entry[data-current] & {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+}
+.label {
+  margin: 0;
+  font-size: var(--text-md);
+  color: var(--strong);
+  .entry[data-current] & {
+    color: var(--accent);
+  }
+}
+.range {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-sm);
+  color: var(--strong);
+}
+.detail {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}

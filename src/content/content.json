@@ -29,7 +29,7 @@
       "num": "01",
       "file": "work.log",
       "tab": "work",
-      "command": "cat work.log",
+      "command": "cat work.log --since=2007",
       "status": "LOGGING",
       "path": "/work",
       "title": "Work history",
@@ -84,153 +84,198 @@
       {
         "slug": "scale-computing",
         "company": "Scale Computing",
-        "role": "senior software developer",
-        "period": "2025 — now",
-        "status": "in-progress",
-        "stack": "react, typescript, mui, tailwind, storybook, playwright, gitlab ci/cd",
+        "roles": [
+          {
+            "title": "Senior Software Developer",
+            "start": "2025-05"
+          }
+        ],
+        "location": "Austin, Texas, USA",
+        "type": "Full-time · Remote",
+        "summary": "Builds customer-facing web apps on Scale’s platform — secure identity and access, admin consoles and real-time operational views — mostly in React and TypeScript, from design collaboration through testing and release.",
         "notes": [
-          "builds customer-facing web apps on scale’s platform: secure identity and access, admin consoles, real-time operational views",
-          "implemented the company’s first shared design system, working closely with designers",
-          "designs api specs shared across teams and automates best practices: linting, strict types, git hooks, automated releases"
+          "Implemented the company’s first shared design system, together with designers",
+          "Designs API specifications shared across teams, and a reusable framework for managing application entities with minimal code",
+          "Automates engineering practice: linting, strict type checking, Git hooks, conventional commits, automated versioning and release notes",
+          "Owns quality and delivery: unit, Storybook, Playwright and API contract tests, plus GitLab CI/CD pipelines that publish releases"
+        ],
+        "skills": [
+          "React",
+          "TypeScript",
+          "MUI",
+          "Tailwind CSS",
+          "OAuth2/OIDC",
+          "Design Systems",
+          "Storybook",
+          "Vitest",
+          "Playwright",
+          "GitLab CI/CD",
+          "Docker"
         ]
       },
       {
         "slug": "shopify",
         "company": "Shopify",
-        "role": "senior front end developer",
-        "period": "2015 — 2024",
-        "status": "done",
-        "stack": "typescript, react, graphql, apollo, ruby on rails, webpack, storybook, jest",
+        "roles": [
+          {
+            "title": "Senior Front End Developer",
+            "start": "2017-07",
+            "end": "2024-11"
+          },
+          {
+            "title": "Front End Developer",
+            "start": "2015-12",
+            "end": "2017-07"
+          }
+        ],
+        "location": "Montréal, Canada",
+        "type": "Full-time",
+        "summary": "Worked on critical public-facing areas such as Checkout, and subscriber-facing ones such as Email.",
         "notes": [
-          "worked on critical public-facing areas like checkout, plus subscriber-facing ones like email",
-          "managed a small team of front end developers and helped evolve polaris, shopify’s open source ui kit",
-          "interviewed candidates and crafted pair programming challenges"
+          "Managed a small team of front-end developers",
+          "Crafted UIs alongside the UX team and helped evolve Polaris, Shopify’s open-source UI kit",
+          "Interviewed many candidates and wrote the pair-programming challenges"
+        ],
+        "skills": [
+          "TypeScript",
+          "React",
+          "GraphQL",
+          "Apollo",
+          "Ruby on Rails",
+          "Webpack",
+          "Figma",
+          "Storybook",
+          "Jest"
         ]
       },
       {
         "slug": "reliant-solutions",
         "company": "Reliant Solutions",
-        "role": "software engineer",
-        "period": "2014 — 2015",
-        "status": "done",
-        "stack": "backbone.js, zurb foundation, embedded build tooling",
+        "roles": [
+          {
+            "title": "Software Engineer",
+            "start": "2014-10",
+            "end": "2015-11"
+          }
+        ],
+        "location": "New York, USA",
+        "type": "Contract · Remote",
+        "summary": "Upgraded the UI/UX of every application with a UI framework — Zurb Foundation, customised to the customers’ needs.",
         "notes": [
-          "upgraded the ui/ux of every application with a customised zurb foundation framework",
-          "refactored the ux of all app views, customising backbone.js usage across the codebase",
-          "designed the build system for embedded devices with low storage and performance limits"
-        ]
-      },
-      {
-        "slug": "guestful",
-        "company": "Guestful",
-        "role": "front-end web developer",
-        "period": "2013",
-        "status": "done",
-        "stack": "html5, css3, javascript, jquery, handlebars.js, node.js, grunt, compass, zurb foundation",
-        "notes": [
-          "took care of responsive, bulletproof front-end development for the company’s apps"
-        ]
+          "Refactored the UX of every view, updating functionality and Backbone.js usage across the codebase",
+          "Designed the build system for embedded devices with low storage and performance limits, alongside their UI/UX"
+        ],
+        "skills": ["Backbone.js", "Zurb Foundation", "Embedded build tooling"]
       },
       {
         "slug": "bracket-army",
         "company": "Bracket Army",
-        "role": "co-founder and front end developer",
-        "period": "2012 — 2015",
-        "status": "done",
-        "stack": "varied, per client",
+        "roles": [
+          {
+            "title": "Co-founder and Front End Developer",
+            "start": "2012-03",
+            "end": "2015-04"
+          }
+        ],
+        "summary": "Led the management and technical aspects of the company alongside another business partner, working with clients from multiple cities in Brazil, as well as abroad.",
         "notes": [
-          "led the management and technical aspects of the company alongside another business partner, working with clients from multiple cities in brazil, as well as abroad",
-          "built websites, features, apps and updates to products for companies such as redbull, singer, renner, dzam, farm, boobox and many others, using the latest available tech or adapting from the customer’s own codebase"
-        ]
+          "Built websites, features, apps and updates to products for companies such as RedBull, Singer, Renner, Dzam, Farm, BooBox and many others, using the latest available tech or adapting from the customer’s own codebase"
+        ],
+        "skills": []
       },
       {
-        "slug": "high-level-it",
-        "company": "High Level I.T.",
-        "role": "head front-end developer",
-        "period": "2012",
-        "status": "done",
-        "stack": "jquery, ruby on rails",
-        "notes": [
-          "responsible for the whole front-end of all the company’s applications",
-          "minor back-end tweaks along the way"
-        ]
-      },
-      {
-        "slug": "cakemail",
-        "company": "CakeMail",
-        "role": "web developer",
-        "period": "2011 — 2012",
-        "status": "done",
-        "stack": "php, jquery, python",
-        "notes": [
-          "developed modules for the main application, mostly in php and jquery",
-          "wrote api unit tests in python",
-          "built an internationalisation tool for the company’s apps and handled web dev support"
-        ]
-      },
-      {
-        "slug": "justlexit",
-        "company": "JUSTLEXIT",
-        "role": "front-end web developer",
-        "period": "2011 — 2012",
-        "status": "done",
-        "stack": "jquery, underscore.js",
-        "notes": [
-          "worked part-time, responsible for the interface interactions",
-          "based in montréal at the time"
-        ]
-      },
-      {
-        "slug": "incite",
-        "company": "Incite",
-        "role": "junior web designer / developer",
-        "period": "2009 — 2011",
-        "status": "done",
-        "stack": "html, css, javascript, wordpress, expression engine",
-        "notes": [
-          "coded photoshop designs into html, css and js",
-          "integrated the result with cms platforms like wordpress and expression engine",
-          "based in edmonton at the time"
-        ]
-      },
-      {
-        "slug": "overhaul-media",
-        "company": "Overhaul Media",
-        "role": "freelance web developer",
-        "period": "2010 — 2011",
-        "status": "done",
-        "stack": "html, css, javascript, wordpress, shopify",
-        "notes": [
-          "coded photoshop designs into html, css and js",
-          "integrated them with wordpress and shopify",
-          "based in edmonton at the time"
-        ]
-      },
-      {
-        "slug": "miti-tecnologia",
-        "company": "miti tecnologia",
-        "role": "programmer, previously intern",
-        "period": "2008 — 2009",
-        "status": "done",
-        "stack": "java, perl, python",
-        "notes": [
-          "built the java web version, front and back end, of a desktop app for recording conferences and interviews",
-          "as an intern, replaced a set of perl news-capture scripts with a single python script",
-          "trained the other interns to use it"
-        ]
-      },
-      {
-        "slug": "lojas-maia",
-        "company": "Lojas Maia",
-        "role": "intern",
-        "period": "2007 — 2008",
-        "status": "done",
-        "stack": "java",
-        "notes": [
-          "developed modules for the main application using the company’s private java framework"
+        "slug": "guestful",
+        "company": "Guestful",
+        "roles": [
+          {
+            "title": "Front-End Web Developer",
+            "start": "2013",
+            "end": "2013"
+          }
+        ],
+        "summary": "Took care of responsive, bulletproof front-end development for the company’s apps.",
+        "notes": [],
+        "skills": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "jQuery",
+          "Handlebars.js",
+          "Node.js",
+          "Grunt",
+          "Compass",
+          "Zurb Foundation"
         ]
       }
-    ]
+    ],
+    "earlier": {
+      "label": "earlier/",
+      "roles": [
+        {
+          "slug": "high-level-it",
+          "company": "High Level I.T.",
+          "role": "Head Front-End Developer",
+          "start": "2012-04",
+          "end": "2012-09",
+          "summary": "the whole front end of every company app",
+          "stack": "jQuery, Ruby on Rails"
+        },
+        {
+          "slug": "cakemail",
+          "company": "CakeMail",
+          "role": "Web Developer",
+          "start": "2011-03",
+          "end": "2012-02",
+          "summary": "PHP & jQuery modules, Python API tests, an i18n tool",
+          "location": "Montréal"
+        },
+        {
+          "slug": "justlexit",
+          "company": "JUSTLEXIT",
+          "role": "Front-End Web Developer",
+          "start": "2011-11",
+          "end": "2012-01",
+          "summary": "part-time, interface interactions",
+          "stack": "jQuery, Underscore.js",
+          "location": "Montréal"
+        },
+        {
+          "slug": "incite",
+          "company": "Incite",
+          "role": "Junior Web Designer/Developer",
+          "start": "2009-09",
+          "end": "2011-02",
+          "summary": "Photoshop to HTML/CSS/JS, WordPress & ExpressionEngine",
+          "location": "Edmonton"
+        },
+        {
+          "slug": "overhaul-media",
+          "company": "Overhaul Media",
+          "role": "Freelance Web Developer",
+          "start": "2010-09",
+          "end": "2011-01",
+          "summary": "Photoshop to HTML/CSS/JS, WordPress & Shopify",
+          "location": "Edmonton"
+        },
+        {
+          "slug": "miti-tecnologia",
+          "company": "miti tecnologia",
+          "role": "Programmer, previously Intern",
+          "start": "2008-04",
+          "end": "2009-07",
+          "summary": "Java web app for recording conferences; replaced Perl scrapers with Python"
+        },
+        {
+          "slug": "lojas-maia",
+          "company": "Lojas Maia",
+          "role": "Intern",
+          "start": "2007-09",
+          "end": "2008-02",
+          "summary": "modules for the main application, on the company’s private Java framework",
+          "stack": "Java"
+        }
+      ]
+    }
   },
   "projects": [
     {

@@ -4,7 +4,9 @@
   /* full width, so the list's scrollbar sits at the page edge; the rows themselves are capped (see .plain) */
   max-width: none;
 }
+/* position: relative keeps visually hidden (absolutely positioned) text inside the scroll area */
 .list {
+  position: relative;
   flex: 1;
   min-height: 0;
   overflow-x: hidden;

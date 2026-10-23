@@ -15,14 +15,31 @@ export type Page = {
   description: string;
 };
 
-type Job = {
+// Dates are 'YYYY-MM', or just 'YYYY' when the month is not known.
+export type Role = { title: string; start: string; end?: string };
+
+// A job on the timeline: one employer, one or more roles (newest first), no `end` meaning "now".
+export type Job = {
+  slug: string;
+  company: string;
+  roles: Role[];
+  location?: string;
+  type?: string;
+  summary: string;
+  notes: string[];
+  skills: string[];
+};
+
+// A row of the "earlier" table: one short line per role.
+export type EarlierRole = {
   slug: string;
   company: string;
   role: string;
-  period: string;
-  status: 'in-progress' | 'done';
-  stack: string;
-  notes: string[];
+  start: string;
+  end: string;
+  summary: string;
+  stack?: string;
+  location?: string;
 };
 
 type Project = {
@@ -55,6 +72,7 @@ type Content = {
   index: { tagline: string; status: { key: string; value: string }[] };
   work: {
     jobs: Job[];
+    earlier: { label: string; roles: EarlierRole[] };
   };
   projects: Project[];
   contact: { heading: string; rows: ContactRow[]; footnote: string };
