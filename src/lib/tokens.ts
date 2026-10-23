@@ -131,6 +131,13 @@ export const bucketFor = (o: Overrides, t: TokenDef, theme: Theme) =>
 export const currentValue = (name: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
+// The number in a CSS value, in the unit the token is edited in. The build minifies CSS, so a
+// duration written as 200ms can come back as .2s: seconds are turned back into milliseconds.
+export function numericValue(value: string) {
+  const n = parseFloat(value) || 0;
+  return /\d\s*s$/.test(value.trim()) && !/ms$/.test(value.trim()) ? Math.round(n * 1000) : n;
+}
+
 export const isHex = (v: string) => /^#[0-9a-f]{6}$/i.test(v);
 
 // What to store for a value typed into an editor row, or null when it is not usable yet:

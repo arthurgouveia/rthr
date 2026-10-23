@@ -3,7 +3,15 @@
 import { type ReactNode, useState } from 'react';
 import { cx } from '@/lib/cx';
 import { useAccent } from '@/lib/theme';
-import { currentValue, isHex, realName, type TokenDef, toHex, tokenLabel } from '@/lib/tokens';
+import {
+  currentValue,
+  isHex,
+  numericValue,
+  realName,
+  type TokenDef,
+  toHex,
+  tokenLabel,
+} from '@/lib/tokens';
 import styles from './token-panel.module.css';
 
 type Props = {
@@ -67,7 +75,7 @@ export function TokenRow({ def, id, changed, onSet }: Props) {
     );
   }
 
-  const number = parseFloat(value) || 0;
+  const number = numericValue(value);
   return (
     <RowShell {...shell}>
       <input
