@@ -83,6 +83,16 @@ describe('RippleBackground', () => {
     expect(raf).not.toHaveBeenCalled();
   });
 
+  it('reads its square size from --ripple-size, and keeps it within sensible limits', () => {
+    const ctx = fakeContext();
+    useContext(ctx);
+    document.documentElement.classList.add('static');
+    document.documentElement.style.setProperty('--ripple-size', '12px');
+    render(<RippleBackground />);
+    const widths = new Set(ctx.fillRect.mock.calls.map((c) => c[2]));
+    expect(widths).toEqual(new Set([11]));
+  });
+
   it('stays a still frame when the disable-motion switch is on, then moves when it is off', () => {
     useContext(fakeContext());
     mockMatchMedia('never-matches');

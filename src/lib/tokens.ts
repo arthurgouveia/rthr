@@ -3,11 +3,19 @@
 import { KEYS, store } from '@/lib/store';
 import { syncThemeColor, type Theme } from '@/lib/theme';
 
-export const TOKEN_TABS = ['colors', 'spacing', 'type', 'motion'] as const;
+export const TOKEN_TABS = ['colors', 'spacing', 'type', 'motion', 'canvas'] as const;
 export type TokenTab = (typeof TOKEN_TABS)[number];
 
 type ColorToken = { kind: 'color'; name: string; label: string };
-type RangeToken = { kind: 'range'; name: string; min: number; max: number; unit: 'px' | 'ms' };
+// A slider. `unit` is added to the stored value ('' for a plain number); `step` is the slider's grain.
+type RangeToken = {
+  kind: 'range';
+  name: string;
+  min: number;
+  max: number;
+  unit: 'px' | 'ms' | '';
+  step: number;
+};
 export type TokenDef = ColorToken | RangeToken;
 
 const color = (name: string, label: string): ColorToken => ({ kind: 'color', name, label });
@@ -17,6 +25,7 @@ const px = (name: string, min: number, max: number): RangeToken => ({
   min,
   max,
   unit: 'px',
+  step: 1,
 });
 const ms = (name: string, max: number): RangeToken => ({
   kind: 'range',
@@ -24,6 +33,15 @@ const ms = (name: string, max: number): RangeToken => ({
   min: 0,
   max,
   unit: 'ms',
+  step: 1,
+});
+const scale = (name: string, min: number, max: number, step: number): RangeToken => ({
+  kind: 'range',
+  name,
+  min,
+  max,
+  unit: '',
+  step,
 });
 
 // "accent" is not a real variable: it stands for whichever --accent-* is selected (see realName).
@@ -64,6 +82,11 @@ export const TOKENS: Record<TokenTab, TokenDef[]> = {
     ms('--duration-base', 2000),
     ms('--duration-slow', 2000),
   ],
+  canvas: [
+    scale('--ripple-opacity', 0, 1, 0.05),
+    px('--ripple-size', 4, 24),
+    scale('--ripple-speed', 0, 3, 0.1),
+  ],
 };
 
 export const tokenLabel = (def: TokenDef) =>
@@ -74,6 +97,7 @@ export const SCOPE: Record<TokenTab, string> = {
   spacing: 'six steps drive every gap and padding on the site.',
   type: 'seven sizes. display = Pirata One. phone has its own defaults.',
   motion: 'durations in ms. 0 turns an animation off.',
+  canvas: 'the ripple behind the page. opacity 0 hides it; speed 0 freezes it.',
 };
 
 export type Overrides = {

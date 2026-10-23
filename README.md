@@ -11,7 +11,7 @@ My goth-like terminal cv kind of thing. 🦇
 ![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=flat-square&logo=storybook&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white)
 
-A four-page terminal-style portfolio (`index.md`, `work.log`, `projects/`, `summon.sh`), dark by default, with a live token editor (with a disable-motion switch), three accent colours (blood, flame, saffron), CSS-only typing, a dim ripple-grid background in the accent colour, an ASCII bat on the 404 and a floating detail card. Every page fits one screen.
+A four-page terminal-style portfolio (`index.md`, `work.log`, `projects/`, `summon.sh`), dark by default, with a live token editor (with a disable-motion switch and controls for the background ripple), three accent colours (blood, flame, saffron), CSS-only typing, a dim ripple-grid background in the accent colour, an ASCII bat on the 404 and a floating detail card. Every page fits one screen.
 
 ## Quick start
 

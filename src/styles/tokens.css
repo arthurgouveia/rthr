@@ -88,8 +88,10 @@
   --duration-chase: 600ms; /* the bat easing toward the pointer */
   --shift: 8px; /* row hover offset */
 
-  /* ---- Background ripple: the canvas behind the page ---- */
+  /* ---- Background ripple: the canvas behind the page (customize panel > canvas) ---- */
   --ripple-opacity: 0.3; /* how strongly it shows: 0 hides it, 1 is full strength */
+  --ripple-size: 8px; /* the width of one square */
+  --ripple-speed: 1; /* how fast the waves travel: 0 freezes them, 2 is twice as fast */
 }
 
 /* ---- Dark (default) ---- */

@@ -85,6 +85,20 @@ describe('TokenPanel', () => {
     expect(onClose).toHaveBeenCalledOnce();
   });
 
+  it('edits the canvas: opacity and speed as plain numbers, size in px', async () => {
+    setup();
+    await userEvent.click(screen.getByRole('button', { name: 'canvas' }));
+    fireEvent.change(screen.getByLabelText('--ripple-opacity value'), {
+      target: { value: '0.55' },
+    });
+    fireEvent.change(screen.getByLabelText('--ripple-speed value'), { target: { value: '2' } });
+    fireEvent.change(screen.getByLabelText('--ripple-size in px'), { target: { value: '12' } });
+    expect(saved().shared['--ripple-opacity']).toBe('0.55');
+    expect(saved().shared['--ripple-speed']).toBe('2');
+    expect(saved().shared['--ripple-size']).toBe('12px');
+    expect(overridesCss()).toContain('--ripple-size: 12px');
+  });
+
   it('has a disable-motion switch on the motion tab only, that turns motion off and back on', async () => {
     setup();
     expect(screen.queryByRole('switch')).not.toBeInTheDocument();

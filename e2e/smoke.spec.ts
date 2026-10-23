@@ -88,7 +88,25 @@ test('the disable-motion switch stops motion and is remembered across reloads', 
   await expect(page.locator('html')).not.toHaveClass(/static/);
 });
 
-for (const tab of ['motion']) {
+test('the canvas tab changes how the ripple looks, live', async ({ page }) => {
+  await page.goto('/?static=1');
+  const canvas = page.locator('canvas[aria-hidden="true"]').first();
+  await expect(canvas).toHaveCSS('opacity', '0.3');
+  await page.getByRole('button', { name: 'customize me' }).click();
+  await page.getByRole('button', { name: 'canvas', exact: true }).click();
+  await page.getByLabel('--ripple-opacity value').fill('0.7');
+  await expect(canvas).toHaveCSS('opacity', '0.7');
+  await page.getByLabel('--ripple-size in px').fill('16');
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        getComputedStyle(document.documentElement).getPropertyValue('--ripple-size').trim(),
+      ),
+    )
+    .toBe('16px');
+});
+
+for (const tab of ['motion', 'canvas']) {
   test(`the customize panel's ${tab} tab has no accessibility violations`, async ({ page }) => {
     await page.goto(`/?static=1&tokens=1&tab=${tab}`);
     await expect(page.getByRole('dialog', { name: /vim tokens.css/ })).toBeVisible();

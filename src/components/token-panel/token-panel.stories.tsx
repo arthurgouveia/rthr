@@ -20,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Colors: Story = { args: { initialTab: 'colors' } };
 export const Motion: Story = { args: { initialTab: 'motion' } };
+export const Canvas: Story = { args: { initialTab: 'canvas' } };
 
 export const ColorsLameFlame: Story = {
   args: { initialTab: 'colors' },
