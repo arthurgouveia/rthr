@@ -68,6 +68,38 @@ test('the customize panel edits a token live and resets', async ({ page }) => {
   await expect.poll(overrides).toBe('');
 });
 
+test('the disable-motion switch stops motion and is remembered across reloads', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page.locator('html')).not.toHaveClass(/static/);
+  await page.getByRole('button', { name: 'customize me' }).click();
+  await page.getByRole('button', { name: 'motion', exact: true }).click();
+  const motion = page.getByRole('switch', { name: 'disable motion' });
+  await motion.check();
+  await expect(page.locator('html')).toHaveClass(/static/);
+  await page.reload();
+  await expect(page.locator('html')).toHaveClass(/static/);
+  await page.getByRole('button', { name: 'customize me' }).click();
+  await page.getByRole('button', { name: 'motion', exact: true }).click();
+  await expect(page.getByRole('switch', { name: 'disable motion' })).toBeChecked();
+  await page.getByRole('switch', { name: 'disable motion' }).uncheck();
+  await page.reload();
+  await expect(page.locator('html')).not.toHaveClass(/static/);
+});
+
+for (const tab of ['motion']) {
+  test(`the customize panel's ${tab} tab has no accessibility violations`, async ({ page }) => {
+    await page.goto(`/?static=1&tokens=1&tab=${tab}`);
+    await expect(page.getByRole('dialog', { name: /vim tokens.css/ })).toBeVisible();
+    const results = await new AxeBuilder({ page })
+      .include('#tokens')
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+}
+
 // Accessibility: the same axe rules used by hand, on every page in both themes.
 for (const theme of ['dark', 'lame']) {
   for (const { path } of PAGES) {

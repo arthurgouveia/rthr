@@ -1,7 +1,7 @@
 'use client';
 
 import { type RefObject, useEffect, useRef } from 'react';
-import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { useMotionOff } from '@/hooks/use-motion-off';
 import styles from './bat.module.css';
 import { BAT_FRAMES } from './frames';
 
@@ -12,7 +12,7 @@ type Props = {
 
 // While the pointer is over the area, hand its position to CSS (--x/--y); CSS does the easing.
 export function Bat({ areaRef }: Props) {
-  const reduced = useReducedMotion();
+  const reduced = useMotionOff();
   const wrap = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

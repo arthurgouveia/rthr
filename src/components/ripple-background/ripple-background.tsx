@@ -1,24 +1,24 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useReducedMotion } from '@/hooks/use-reduced-motion';
-import { isStatic } from '@/lib/motion';
+import { useMotionOff } from '@/hooks/use-motion-off';
 import { drawRipple } from '@/lib/ripple';
 import styles from './ripple-background.module.css';
 
 const FPS = 30;
-// Where the wave is frozen for reduced motion and ?static=1, so a still frame still has ripples.
+// Where the wave is frozen when motion is off, so a still frame still has ripples.
 const STILL_AT = 8;
 
 const accent = () =>
   getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || 'currentColor';
 
 // A canvas that fills its parent and ripples in the accent colour, dimmed by --ripple-opacity. It
-// moves unless the visitor prefers reduced motion (or ?static=1 is set), in which case it draws one
-// still frame. Decorative: hidden from assistive tech and never clickable.
+// moves unless motion is off (the customize panel's switch, ?static=1, or a system preference for
+// reduced motion), in which case it draws one still frame. Decorative: hidden from assistive tech
+// and never clickable.
 export function RippleBackground() {
   const canvas = useRef<HTMLCanvasElement>(null);
-  const reduced = useReducedMotion();
+  const motionOff = useMotionOff();
 
   useEffect(() => {
     const el = canvas.current;
@@ -26,7 +26,7 @@ export function RippleBackground() {
     const ctx = el?.getContext('2d');
     if (!el || !parent || !ctx) return;
 
-    const moving = !reduced && !isStatic();
+    const moving = !motionOff;
     const started = performance.now();
     let w = 0;
     let h = 0;
@@ -75,7 +75,7 @@ export function RippleBackground() {
       window.clearInterval(watch);
       observer.disconnect();
     };
-  }, [reduced]);
+  }, [motionOff]);
 
   // biome-ignore lint/a11y/noAriaHiddenOnFocusable: a canvas with no fallback content and no tabindex is not focusable
   return <canvas aria-hidden='true' className={styles.canvas} ref={canvas} />;

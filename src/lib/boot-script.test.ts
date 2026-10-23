@@ -84,4 +84,12 @@ describe('bootScript', () => {
     expect(() => run()).not.toThrow();
     expect(document.documentElement.dataset.theme).toBe('dark');
   });
+
+  it('turns motion off when the customize panel saved that, and not otherwise', () => {
+    run();
+    expect(document.documentElement).not.toHaveClass('static');
+    localStorage.setItem('ag-motion', 'off');
+    run();
+    expect(document.documentElement).toHaveClass('static');
+  });
 });

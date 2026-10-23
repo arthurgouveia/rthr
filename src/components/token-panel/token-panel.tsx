@@ -5,6 +5,7 @@ import { useDismiss } from '@/hooks/use-dismiss';
 import { TOKENS_BUTTON_ID, TOKENS_ID } from '@/lib/dom-ids';
 import { useAccent, useTheme } from '@/lib/theme';
 import { SCOPE, TOKEN_TABS, TOKENS, type TokenTab } from '@/lib/tokens';
+import { MotionSwitch } from './motion-switch';
 import styles from './token-panel.module.css';
 import { TokenRow } from './token-row';
 import { useOverrides } from './use-overrides';
@@ -76,6 +77,7 @@ export function TokenPanel({ open, onClose, initialTab }: Props) {
       </div>
       <p className={styles.scope}># {SCOPE[tab]}</p>
       <div className={styles.list}>
+        {open && tab === 'motion' && <MotionSwitch />}
         {open &&
           TOKENS[tab].map((def) => (
             <TokenRow

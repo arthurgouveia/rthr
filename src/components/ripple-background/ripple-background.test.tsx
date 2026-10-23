@@ -82,4 +82,17 @@ describe('RippleBackground', () => {
     render(<RippleBackground />);
     expect(raf).not.toHaveBeenCalled();
   });
+
+  it('stays a still frame when the disable-motion switch is on, then moves when it is off', () => {
+    useContext(fakeContext());
+    mockMatchMedia('never-matches');
+    const raf = vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    document.documentElement.classList.add('static');
+    const { unmount } = render(<RippleBackground />);
+    expect(raf).not.toHaveBeenCalled();
+    unmount();
+    document.documentElement.classList.remove('static');
+    render(<RippleBackground />);
+    expect(raf).toHaveBeenCalled();
+  });
 });

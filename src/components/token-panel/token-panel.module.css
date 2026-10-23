@@ -154,3 +154,54 @@
     cursor: pointer;
   }
 }
+
+/* the "disable motion" switch: a label, a switch, and a note when the system already asks for it */
+.switchRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-sm);
+  min-height: var(--tap);
+  & label {
+    color: var(--soft);
+  }
+}
+.switch {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: var(--space-xl);
+  height: var(--space-md);
+  margin: 0;
+  border: var(--rule-solid);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  cursor: pointer;
+  /* the knob */
+  &::before {
+    content: "";
+    position: absolute;
+    top: var(--space-2xs);
+    left: var(--space-2xs);
+    width: calc(var(--space-md) - 2 * var(--space-2xs) - 2 * var(--border));
+    height: calc(var(--space-md) - 2 * var(--space-2xs) - 2 * var(--border));
+    border-radius: 50%;
+    background: var(--muted);
+    transition: transform var(--duration-fast) ease;
+  }
+  &:checked {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  &:checked::before {
+    background: var(--on-accent);
+    transform: translateX(calc(var(--space-xl) - var(--space-md)));
+  }
+}
+.switchNote {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted);
+}

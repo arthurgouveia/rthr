@@ -84,4 +84,27 @@ describe('TokenPanel', () => {
     fireEvent.pointerDown(document.getElementById('x') as Element);
     expect(onClose).toHaveBeenCalledOnce();
   });
+
+  it('has a disable-motion switch on the motion tab only, that turns motion off and back on', async () => {
+    setup();
+    expect(screen.queryByRole('switch')).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'motion' }));
+    const toggle = screen.getByRole('switch', { name: 'disable motion' });
+    expect(toggle).not.toBeChecked();
+    await userEvent.click(toggle);
+    expect(toggle).toBeChecked();
+    expect(document.documentElement).toHaveClass('static');
+    expect(localStorage.getItem('ag-motion')).toBe('off');
+    await userEvent.click(toggle);
+    expect(document.documentElement).not.toHaveClass('static');
+    expect(localStorage.getItem('ag-motion')).toBeNull();
+  });
+
+  it('leaves the motion choice alone when the tokens are reset', async () => {
+    setup();
+    await userEvent.click(screen.getByRole('button', { name: 'motion' }));
+    await userEvent.click(screen.getByRole('switch', { name: 'disable motion' }));
+    await userEvent.click(screen.getByRole('button', { name: 'reset' }));
+    expect(document.documentElement).toHaveClass('static');
+  });
 });
