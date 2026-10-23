@@ -1,4 +1,4 @@
-/* The selectable list shared by work and projects, with the card it opens floating on top. */
+/* The scrolling page body shared by work and projects, and the project card grid. */
 
 .split {
   /* full width, so the list's scrollbar sits at the page edge; the rows themselves are capped (see .plain) */
@@ -18,9 +18,13 @@
   margin-right: calc(-1 * var(--pad-x));
   padding-right: var(--pad-x);
 }
-.plain {
+/* Project cards: as many columns as fit, never narrower than --card-min. */
+.grid {
   max-width: var(--content-w);
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--card-min), 100%), 1fr));
+  gap: var(--space-md);
 }

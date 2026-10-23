@@ -40,11 +40,11 @@
       "num": "02",
       "file": "projects/",
       "tab": "projects",
-      "command": "ls -l projects/ --sort=stars",
+      "command": "ls projects/ --pinned",
       "status": "BUILDING",
       "path": "/projects",
       "title": "Open-source projects",
-      "description": "Open-source projects by Arthur Gouveia, sorted by GitHub stars: prettyCheckable, bebop and more."
+      "description": "Open-source projects by Arthur Gouveia, pinned first: this site, prettyCheckable, angular-yts, bebop and more."
     },
     {
       "id": "contact",
@@ -279,16 +279,36 @@
   },
   "projects": [
     {
+      "name": "rthr",
+      "lang": "typescript",
+      "year": 2026,
+      "stars": 0,
+      "forks": 0,
+      "desc": "This site: a goth, terminal-style portfolio with a live token editor, CSS-only typing and an ASCII bat on the 404.",
+      "href": "https://github.com/arthurgouveia/rthr"
+    },
+    {
       "name": "prettyCheckable",
       "lang": "javascript",
+      "year": 2012,
       "stars": 341,
       "forks": 92,
       "desc": "A jQuery plugin that replaces native checkboxes and radios with custom images — still my most-forked work.",
       "href": "https://github.com/arthurgouveia/prettyCheckable"
     },
     {
+      "name": "angular-yts",
+      "lang": "javascript",
+      "year": 2014,
+      "stars": 11,
+      "forks": 4,
+      "desc": "An Angular.js app over a public movie API, with a clean UI for general searches.",
+      "href": "https://github.com/arthurgouveia/angular-yts"
+    },
+    {
       "name": "bebop",
       "lang": "css",
+      "year": 2013,
       "stars": 24,
       "forks": 3,
       "desc": "An HTML5 and CSS3 boilerplate built on H5BP with Compass and Grunt, to kickstart and optimize the dev flow of simple sites and apps.",
@@ -297,30 +317,25 @@
     {
       "name": "css-mix-blend-mode",
       "lang": "css",
+      "year": 2015,
       "stars": 19,
       "forks": 1,
       "desc": "A small demo of the CSS mix-blend-mode property.",
       "href": "https://github.com/arthurgouveia/css-mix-blend-mode"
     },
     {
-      "name": "angular-yts",
-      "lang": "javascript",
-      "stars": 11,
-      "forks": 4,
-      "desc": "An Angular.js app over a public movie API, with a clean UI for general searches.",
-      "href": "https://github.com/arthurgouveia/angular-yts"
-    },
-    {
       "name": "reeedr",
       "lang": "typescript",
+      "year": 2017,
       "stars": 1,
-      "forks": null,
+      "forks": 0,
       "desc": "Pet project on books and stuff.",
       "href": "https://github.com/arthurgouveia/reeedr"
     },
     {
       "name": "youRepeat",
-      "lang": "web",
+      "lang": "apacheconf",
+      "year": 2012,
       "stars": 1,
       "forks": 2,
       "desc": "Stupid and dead simple website to loop your favourite YouTube video.",

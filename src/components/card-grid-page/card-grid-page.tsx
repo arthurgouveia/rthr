@@ -7,7 +7,7 @@ import { useDetailSelection } from '@/hooks/use-detail-selection';
 import { type PageId, pageById } from '@/lib/content';
 import list from '@/styles/list.module.css';
 
-type RowState = {
+type CardState = {
   expanded: boolean;
   onSelect: () => void;
 };
@@ -16,27 +16,21 @@ type Props<T> = {
   page: PageId;
   items: T[];
   itemKey: (item: T) => string;
-  // Use an <ol> (ordered) or <ul>.
-  ordered?: boolean;
-  // Extra first row inside the list, e.g. a table header.
-  header?: ReactNode;
-  // One selectable row; wire it with <ListRow {...state}>.
-  row: (item: T, state: RowState) => ReactNode;
+  // One selectable card; wire it with <ProjectCard {...state}>.
+  card: (item: T, state: CardState) => ReactNode;
   // The floating card for the selected item.
   detailLabel: (item: T) => string;
   detail: (item: T) => ReactNode;
-  // The same item as plain markup for crawlers (the card only holds one at a time).
+  // The same item as plain markup for crawlers (the floating card only holds one at a time).
   crawl: (item: T) => ReactNode;
 };
 
-// The page layout shared by work and projects: a selectable list that opens a floating detail card.
-export function ListPage<T>({
+// A page of selectable cards in a grid; selecting one opens a floating detail card.
+export function CardGridPage<T>({
   page,
   items,
   itemKey,
-  ordered,
-  header,
-  row,
+  card,
   detailLabel,
   detail,
   crawl,
@@ -44,23 +38,21 @@ export function ListPage<T>({
   const { command, title } = pageById(page);
   const selection = useDetailSelection();
   const selected = items[selection.index];
-  const List = ordered ? 'ol' : 'ul';
 
   return (
     <>
       <PageFrame className={list.split} command={command} title={title}>
         <div className={list.list}>
-          <List className={list.plain}>
-            {header}
+          <ul className={list.grid}>
             {items.map((item, i) => (
               <li key={itemKey(item)}>
-                {row(item, {
+                {card(item, {
                   expanded: selection.open && i === selection.index,
                   onSelect: () => selection.select(i),
                 })}
               </li>
             ))}
-          </List>
+          </ul>
         </div>
       </PageFrame>
       {/* Outside the animated page body: an animated transform would make that body the card's containing block. */}

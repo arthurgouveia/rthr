@@ -1,17 +1,28 @@
 'use client';
 
+import { CardGridPage } from '@/components/card-grid-page/card-grid-page';
 import detail from '@/components/detail-panel/detail-panel.module.css';
-import { ListPage } from '@/components/list-page/list-page';
-import { ListRow } from '@/components/list-row/list-row';
+import { ProjectCard } from '@/components/project-card/project-card';
 import { content } from '@/lib/content';
 import { cssVars } from '@/lib/css-vars';
+import { languageLabel } from '@/lib/languages';
 import { longestWord } from '@/lib/text';
 import ui from '@/styles/ui.module.css';
-import styles from './projects-view.module.css';
 
 export function ProjectsView() {
   return (
-    <ListPage
+    <CardGridPage
+      card={(project, state) => (
+        <ProjectCard
+          {...state}
+          desc={project.desc}
+          forkedFrom={project.forkedFrom}
+          forks={project.forks}
+          lang={project.lang}
+          name={project.name}
+          stars={project.stars}
+        />
+      )}
       crawl={(project) => (
         <>
           <h2>{project.name}</h2>
@@ -31,7 +42,11 @@ export function ProjectsView() {
           <dl className={detail.stats}>
             <div>
               <dt>lang</dt>
-              <dd>{project.lang}</dd>
+              <dd>{languageLabel(project.lang)}</dd>
+            </div>
+            <div>
+              <dt>year</dt>
+              <dd>{project.year}</dd>
             </div>
             <div>
               <dt>stars</dt>
@@ -39,7 +54,7 @@ export function ProjectsView() {
             </div>
             <div>
               <dt>forks</dt>
-              <dd>{project.forks ?? '—'}</dd>
+              <dd>{project.forks}</dd>
             </div>
           </dl>
           <a className={ui.btnOutline} href={project.href} rel='noopener'>
@@ -48,32 +63,9 @@ export function ProjectsView() {
         </>
       )}
       detailLabel={(project) => project.name}
-      header={
-        <li aria-hidden='true' className={styles.head}>
-          <span>#</span>
-          <span>name</span>
-          <span>lang</span>
-          <span>★</span>
-        </li>
-      }
       itemKey={(project) => project.name}
       items={content.projects}
       page='projects'
-      row={(project, state) => (
-        <ListRow
-          {...state}
-          className={styles.proj}
-          lead={`0${content.projects.indexOf(project) + 1}`}
-          leadClassName={styles.num}
-        >
-          <span className={styles.name}>{project.name}/</span>
-          <span className={styles.lang}>{project.lang}</span>
-          <span className={styles.stars}>
-            <span className='sr'>stars </span>
-            {project.stars}
-          </span>
-        </ListRow>
-      )}
     />
   );
 }

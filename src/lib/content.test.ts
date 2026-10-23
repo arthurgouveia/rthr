@@ -73,6 +73,11 @@ describe('content.json', () => {
     }
   });
 
+  it('leads the projects with this repo and gives each one a year', () => {
+    expect(content.projects[0].href).toBe(content.site.links.repo);
+    for (const p of content.projects) expect(p.year).toBeGreaterThanOrEqual(2000);
+  });
+
   it('links every project and contact row to a real URL', () => {
     for (const p of content.projects) expect(() => new URL(p.href)).not.toThrow();
     for (const r of content.contact.rows) expect(r.href).toMatch(/^(https?:|mailto:)/);
