@@ -64,9 +64,46 @@ feat: add 500 page
 fix(footer): keep est. on one line
 ```
 
+## Pull requests
+
+Work happens on a branch (`feat/…`, `fix/…`, `chore/…`) and reaches `main` through a pull request. The PR title is a conventional commit line too, and the template (`.github/pull_request_template.md`) asks for what changed and why, how to check it, screenshots, risk and a checklist. `main` is protected:
+
+- the five CI checks must pass (lint and unit tests, build, Storybook, end-to-end and accessibility, Lighthouse), on a branch that is up to date with `main`;
+- history stays linear and conversations must be resolved; no force pushes or deletions;
+- the only merge method is **Rebase and merge**, so every commit stays one conventional line and the changelog stays clean; merged branches are deleted automatically.
+
+Admins can bypass the rules so that `npm run release`, which pushes the release commit and tag to `main`, keeps working.
+
 ## Releases
 
-`npm run release` picks the next semver from the commits (git-cliff), bumps `package.json`, regenerates `CHANGELOG.md`, commits `chore(release): vX.Y.Z`, tags it and pushes; the release workflow then publishes the GitHub Release. The footer shows the build's branch and version, linking to that release.
+Versions follow [semver](https://semver.org/) and are worked out from the commits since the last tag (git-cliff, configured in `cliff.toml`). Each commit line becomes one bullet in `CHANGELOG.md` and in the GitHub Release, so the commit lines *are* the release notes.
+
+| Commit | Where it shows up | Version |
+|---|---|---|
+| `feat` | Features | minor |
+| `fix` | Bug fixes | patch |
+| `fix(deps)` | Security and dependencies | patch |
+| `perf`, `refactor`, `revert` | Performance, Refactoring, Reverts | patch |
+| any type with `!` (`feat!:`, `fix(panel)!:`) | Breaking changes, at the top | major |
+| `docs`, `style`, `test`, `chore`, `ci`, `build` | not listed | none |
+
+**Writing a commit that reads well in the notes:** say what a visitor or developer gets, not how (`feat: show job durations as pills`, not `feat: add statusSuffix helper`); keep it to one line, imperative and lowercase (the template capitalises it); add a scope for the area (`fix(footer): …`). Upgrade a vulnerable dependency as `fix(deps)` so it appears in the notes; routine bumps (Dependabot's `chore(deps)`) stay out. Breaking changes are marked with the `!` only, because commits have no footer.
+
+**Cutting a release** (from `main`, once the merged work has gone green in CI):
+
+```bash
+npm run release:dry   # the next version and the notes it would publish
+npm run release       # do it
+npm run release -- v1.2.0   # force a version, rarely needed
+```
+
+The script refuses to run unless you are on `main`, the tree is clean, `main` matches `origin/main`, CI is green on that exact commit, the version is new, and there is something to release (a `feat`, `fix`, `perf`, `refactor` or `revert` since the last tag). It then runs `npm run ci`, bumps `package.json`, regenerates `CHANGELOG.md`, commits `chore(release): vX.Y.Z`, creates the annotated tag `vX.Y.Z` and pushes both. The push goes straight to `main`, which admins can do despite the branch protection.
+
+The release workflow then checks that the tag matches `package.json` and sits on `main`, and publishes the GitHub Release with that version's entry and a link to the full comparison. The footer shows the build's branch and version, linking to that release.
+
+- `CHANGELOG.md` is generated: never edit it by hand. To change its wording, change the commit lines before releasing, or the template in `cliff.toml`.
+- A published tag is never moved or deleted. If a release is wrong, fix it in a pull request and release the next patch.
+- A hotfix is a normal `fix` pull request, then `npm run release`.
 
 ## Deploying
 
