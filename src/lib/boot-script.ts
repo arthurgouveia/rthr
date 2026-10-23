@@ -1,5 +1,5 @@
 // Runs inline in <head> before first paint so the page never flashes: applies the saved theme/accent
-// (dark by default) and any saved token overrides.
+// (dark by default), any saved token overrides, and the "disable motion" choice.
 // Preview flags: ?theme=dark|lame  ?accent=blood|flame|saffron  ?static=1 (no animation)
 import { KEYS } from '@/lib/store';
 import { ACCENTS, DEFAULT_THEME, THEMES } from '@/lib/theme-config';
@@ -9,7 +9,7 @@ export const bootScript = `(function(){
   var t=p.get('theme')||g('${KEYS.theme}');
   if(${JSON.stringify(THEMES)}.indexOf(t)<0)t='${DEFAULT_THEME}';
   d.dataset.theme=t;
-  if(p.get('static')==='1')d.classList.add('static');
+  if(p.get('static')==='1'||g('${KEYS.motion}')==='off')d.classList.add('static');
   var r=p.get('accent')||g('${KEYS.accent}');
   if(${JSON.stringify(ACCENTS)}.indexOf(r)>-1)d.dataset.accent=r;
   try{

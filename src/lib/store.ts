@@ -1,5 +1,10 @@
 // Every key the site writes to localStorage.
-export const KEYS = { theme: 'ag-theme', accent: 'ag-accent', tokens: 'ag-tokens' } as const;
+export const KEYS = {
+  theme: 'ag-theme',
+  accent: 'ag-accent',
+  tokens: 'ag-tokens',
+  motion: 'ag-motion',
+} as const;
 
 export const store = {
   get(k: string): string | null {
@@ -12,6 +17,11 @@ export const store = {
   set(k: string, v: string) {
     try {
       localStorage.setItem(k, v);
+    } catch {}
+  },
+  remove(k: string) {
+    try {
+      localStorage.removeItem(k);
     } catch {}
   },
 };
