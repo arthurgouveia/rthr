@@ -42,6 +42,10 @@ export type EarlierRole = {
   location?: string;
 };
 
+// A status line's extra text, shown as a pill: written out, or { job } for how long I have been
+// at the job with that slug (worked out from its dates).
+export type StatusSuffix = string | { job: string };
+
 type Project = {
   name: string;
   lang: string;
@@ -73,7 +77,10 @@ type Content = {
     links: { github: string; linkedin: string; repo: string };
   };
   pages: Page[];
-  index: { tagline: string; status: { key: string; value: string }[] };
+  index: {
+    tagline: string[];
+    status: { key: string; value: string; suffix?: StatusSuffix }[];
+  };
   work: {
     jobs: Job[];
     earlier: { label: string; roles: EarlierRole[] };

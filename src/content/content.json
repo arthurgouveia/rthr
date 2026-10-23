@@ -59,15 +59,24 @@
     }
   ],
   "index": {
-    "tagline": "software developer for over two decades, mostly front-end. carefully builds scalable & accessible interfaces.",
+    "tagline": [
+      "20+ yrs of software development, mostly front-end.",
+      "carefully builds scalable & accessible interfaces."
+    ],
     "status": [
       {
         "key": "employer",
-        "value": "Scale Computing"
+        "value": "Scale Computing",
+        "suffix": {
+          "job": "scale-computing"
+        }
       },
       {
         "key": "previously",
-        "value": "Shopify"
+        "value": "Shopify",
+        "suffix": {
+          "job": "shopify"
+        }
       },
       {
         "key": "devoted_to",

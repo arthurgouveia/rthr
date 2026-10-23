@@ -81,3 +81,20 @@ for (const theme of ['dark', 'lame']) {
     });
   }
 }
+
+test('the home tagline shows each of its lines on its own line', async ({ page }) => {
+  await page.goto('/?static=1');
+  const tagline = page.locator('h1 + p');
+  expect(await tagline.locator('br').count()).toBeGreaterThanOrEqual(1);
+  const tops = await tagline.evaluate((el) => {
+    const range = document.createRange();
+    const seen = new Set<number>();
+    for (const node of el.childNodes) {
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+      range.selectNodeContents(node);
+      for (const r of range.getClientRects()) seen.add(Math.round(r.top));
+    }
+    return seen.size;
+  });
+  expect(tops).toBeGreaterThanOrEqual(2);
+});
