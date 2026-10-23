@@ -19,6 +19,19 @@ describe('pageMetadata', () => {
     });
   });
 
+  it('points every page at the generated share image, for Open Graph and Twitter', () => {
+    for (const id of ['index', 'work', 'projects', 'contact'] as const) {
+      const m = pageMetadata(pageById(id));
+      expect(m.openGraph).toMatchObject({
+        images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+      });
+      expect(m.twitter).toMatchObject({
+        card: 'summary_large_image',
+        images: ['/opengraph-image'],
+      });
+    }
+  });
+
   it('titles the home page with the name and role, outside the site template', () => {
     const home = pageById('index');
     expect(pageTitle(home)).toBe('Arthur Gouveia — front-end developer');
