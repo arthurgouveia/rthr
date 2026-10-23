@@ -35,4 +35,12 @@ describe('ripple', () => {
     expect(ctx.fillRect).toHaveBeenCalled();
     expect(ctx.globalAlpha).toBe(1);
   });
+
+  it('draws squares as wide as the cell it is given, less the gap', () => {
+    const ctx = { clearRect: vi.fn(), fillRect: vi.fn(), fillStyle: '', globalAlpha: 1 };
+    // biome-ignore lint/suspicious/noExplicitAny: a stand-in for CanvasRenderingContext2D
+    drawRipple(ctx as any, 200, 200, 5, '#fff', 16);
+    expect(ctx.fillRect).toHaveBeenCalled();
+    for (const call of ctx.fillRect.mock.calls) expect(call.slice(2)).toEqual([15, 15]);
+  });
 });

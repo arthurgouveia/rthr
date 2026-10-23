@@ -83,11 +83,12 @@ export function TokenRow({ def, id, changed, onSet }: Props) {
         max={def.max}
         min={def.min}
         onChange={(e) => onSet(def, e.target.value)}
+        step={def.step}
         type='range'
         value={number}
       />
       <input
-        aria-label={`${name} in ${def.unit}`}
+        aria-label={def.unit ? `${name} in ${def.unit}` : `${name} value`}
         max={def.max}
         min={def.min}
         onBlur={() => setDraft(null)}
@@ -95,6 +96,7 @@ export function TokenRow({ def, id, changed, onSet }: Props) {
           setDraft(e.target.value);
           onSet(def, e.target.value);
         }}
+        step={def.step}
         type='number'
         value={draft ?? number}
       />

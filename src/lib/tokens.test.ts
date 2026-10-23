@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   applyOverrides,
@@ -5,7 +7,9 @@ import {
   isHex,
   loadOverrides,
   numericValue,
+  parseTokenInput,
   realName,
+  TOKEN_TABS,
   TOKENS,
   toHex,
 } from './tokens';
@@ -65,6 +69,44 @@ describe('overrides', () => {
     applyOverrides({ shared: {}, dark: {}, lame: {} });
     applyOverrides({ shared: { '--space-sm': '9px' }, dark: {}, lame: {} });
     expect(document.querySelectorAll('#token-overrides')).toHaveLength(1);
+  });
+});
+
+describe('canvas tokens', () => {
+  const find = (name: string) => {
+    const def = TOKENS.canvas.find((d) => d.name === name);
+    if (!def) throw new Error(`no token ${name}`);
+    return def;
+  };
+
+  it('has a canvas tab with opacity, size and speed', () => {
+    expect(TOKEN_TABS).toContain('canvas');
+    expect(TOKENS.canvas.map((d) => d.name)).toEqual([
+      '--ripple-opacity',
+      '--ripple-size',
+      '--ripple-speed',
+    ]);
+  });
+
+  it('stores opacity and speed as plain numbers, and size in px, all clamped', () => {
+    expect(parseTokenInput(find('--ripple-opacity'), '0.35')).toBe('0.35');
+    expect(parseTokenInput(find('--ripple-opacity'), '7')).toBe('1');
+    expect(parseTokenInput(find('--ripple-speed'), '-2')).toBe('0');
+    expect(parseTokenInput(find('--ripple-speed'), '1.5')).toBe('1.5');
+    expect(parseTokenInput(find('--ripple-size'), '12')).toBe('12px');
+    expect(parseTokenInput(find('--ripple-size'), '1')).toBe('4px');
+  });
+});
+
+describe('TOKENS', () => {
+  it('only lists variables that tokens.css defines', () => {
+    const css = readFileSync(join(process.cwd(), 'src/styles/tokens.css'), 'utf8');
+    for (const defs of Object.values(TOKENS)) {
+      for (const def of defs) {
+        if (def.name === 'accent') continue; // stands for whichever --accent-* is selected
+        expect(css, def.name).toContain(`${def.name}:`);
+      }
+    }
   });
 });
 

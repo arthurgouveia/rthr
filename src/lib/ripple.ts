@@ -1,7 +1,7 @@
 // The ripple grid: a field of small squares whose brightness is the sum of waves spreading from
 // three slowly drifting centres. Pure drawing code, so the component only has to run it.
 
-export const CELL = 8; // px per square, gap included
+export const CELL = 8; // the usual width of a square, in px, gap included
 const SPREAD = 180; // how far the centres wander, in px
 
 type Centre = [x: number, y: number];
@@ -22,23 +22,25 @@ export function rippleBrightness(x: number, y: number, t: number, from: Centre[]
   return Math.min(Math.max(b * 0.44 + 0.055, 0), 1);
 }
 
-// Draws one frame onto a transparent canvas of w by h CSS pixels, in a single colour.
+// Draws one frame onto a transparent canvas of w by h CSS pixels, in a single colour, with squares
+// `cell` pixels wide.
 export function drawRipple(
   ctx: CanvasRenderingContext2D,
   w: number,
   h: number,
   t: number,
   color: string,
+  cell: number = CELL,
 ) {
   ctx.clearRect(0, 0, w, h);
   ctx.fillStyle = color;
   const from = centres(w, h, t);
-  for (let y = 0; y < h; y += CELL) {
-    for (let x = 0; x < w; x += CELL) {
-      const b = rippleBrightness(x + CELL / 2, y + CELL / 2, t, from);
+  for (let y = 0; y < h; y += cell) {
+    for (let x = 0; x < w; x += cell) {
+      const b = rippleBrightness(x + cell / 2, y + cell / 2, t, from);
       if (b < 0.028) continue;
       ctx.globalAlpha = b;
-      ctx.fillRect(x, y, CELL - 1, CELL - 1);
+      ctx.fillRect(x, y, cell - 1, cell - 1);
     }
   }
   ctx.globalAlpha = 1;
