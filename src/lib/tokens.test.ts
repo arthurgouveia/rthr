@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { applyOverrides, bucketFor, isHex, loadOverrides, realName, TOKENS, toHex } from './tokens';
+import {
+  applyOverrides,
+  bucketFor,
+  isHex,
+  loadOverrides,
+  numericValue,
+  realName,
+  TOKENS,
+  toHex,
+} from './tokens';
 
 describe('isHex / toHex', () => {
   it('accepts only #RRGGBB', () => {
@@ -56,5 +65,23 @@ describe('overrides', () => {
     applyOverrides({ shared: {}, dark: {}, lame: {} });
     applyOverrides({ shared: { '--space-sm': '9px' }, dark: {}, lame: {} });
     expect(document.querySelectorAll('#token-overrides')).toHaveLength(1);
+  });
+});
+
+describe('numericValue', () => {
+  it('reads plain numbers and px and ms values as they are', () => {
+    expect(numericValue('0.3')).toBe(0.3);
+    expect(numericValue('12px')).toBe(12);
+    expect(numericValue('55ms')).toBe(55);
+  });
+
+  it('turns seconds back into milliseconds (minified CSS writes 200ms as .2s)', () => {
+    expect(numericValue('.2s')).toBe(200);
+    expect(numericValue('0.4s')).toBe(400);
+    expect(numericValue('1s')).toBe(1000);
+  });
+
+  it('is 0 for nothing', () => {
+    expect(numericValue('')).toBe(0);
   });
 });
