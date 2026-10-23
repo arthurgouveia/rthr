@@ -16,10 +16,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: { text: 'ls -l projects/ --sort=stars' } };
+export const Default: Story = { args: { text: 'ls -l projects/ --sort=relevance' } };
 
 // The only story that plays the real typing animation (the rest show the finished state).
 export const Typing: Story = {
-  args: { text: 'ls -l projects/ --sort=stars' },
+  args: { text: 'ls -l projects/ --sort=relevance' },
   parameters: { animated: true },
 };

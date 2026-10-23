@@ -45,10 +45,14 @@ export type EarlierRole = {
 type Project = {
   name: string;
   lang: string;
+  // the year the repo was created
+  year: number;
   stars: number;
-  forks: number | null;
+  forks: number;
   desc: string;
   href: string;
+  // set for a fork: the repo it was forked from, as owner/name
+  forkedFrom?: string;
 };
 
 type ContactRow = {

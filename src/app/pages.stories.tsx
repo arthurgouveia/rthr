@@ -26,7 +26,7 @@ const page = (pathname: string, view: PageProps['view']) => ({
   parameters: { pathname },
 });
 
-const project = content.projects.find((p) => p.name.includes('-')) ?? content.projects[0];
+const project = content.projects[1];
 
 export const Home: Story = page('/', HomeView);
 

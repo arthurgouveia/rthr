@@ -49,6 +49,7 @@
   --sidebar-w-compact: 210px; /* tablet */
   --content-w: 1024px; /* widest the page content grows, so it stays near the sidebar on big monitors */
   --detail-w: 600px;
+  --card-min: 300px; /* narrowest a project card gets before the grid drops a column */
   --timeline-meta: 240px; /* the date column of the work timeline */
   --border: 1px;
   --border-thick: 2px; /* active-item indicators */
@@ -68,6 +69,16 @@
   --shadow: 0 24px 48px rgb(0 0 0 / 0.35);
   --shadow-up: 0 -24px 48px rgb(0 0 0 / 0.35);
   --radius: 4px; /* status lozenges */
+  --radius-pill: 999px; /* fully rounded pills */
+
+  /* ---- Language colours: the dot on a project card, the same in both themes ---- */
+  --lang-javascript: #f1e05a;
+  --lang-typescript: #3178c6;
+  --lang-css: #563d7c;
+  --lang-html: #e34c26;
+  --lang-shell: #89e051;
+  --lang-apacheconf: #d12127;
+  --lang-other: var(--muted);
 
   /* ---- Motion: 5 durations ---- */
   --duration-type: 55ms; /* one typed character */

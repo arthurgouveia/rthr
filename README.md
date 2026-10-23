@@ -44,7 +44,7 @@ Needs Node 24 (see `.nvmrc`; 20.9 or newer works). Preview flags for screenshots
 
 ```
 src/app/         routes, metadata, 404/500 pages
-src/components/  shell, page-frame, list-page, list-row, timeline, job-entry, earlier-roles, detail-panel, token-panel, terminal, bat, error-view
+src/components/  shell, page-frame, card-grid-page, project-card, timeline, job-entry, earlier-roles, detail-panel, token-panel, terminal, bat, error-view
 src/hooks/       small React hooks
 src/lib/         content, theme, tokens, helpers
 src/styles/      tokens, base and shared CSS modules

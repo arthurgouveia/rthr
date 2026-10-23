@@ -1,0 +1,29 @@
+.language {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.dot {
+  width: var(--swatch);
+  height: var(--swatch);
+  border-radius: 50%;
+  background: var(--lang-other);
+  &[data-lang="javascript"] {
+    background: var(--lang-javascript);
+  }
+  &[data-lang="typescript"] {
+    background: var(--lang-typescript);
+  }
+  &[data-lang="css"] {
+    background: var(--lang-css);
+  }
+  &[data-lang="html"] {
+    background: var(--lang-html);
+  }
+  &[data-lang="shell"] {
+    background: var(--lang-shell);
+  }
+  &[data-lang="apacheconf"] {
+    background: var(--lang-apacheconf);
+  }
+}
