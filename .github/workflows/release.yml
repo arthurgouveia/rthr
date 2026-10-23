@@ -1,7 +1,7 @@
 name: Release
 
-# Runs when a version tag (made by `npm run release`) is pushed: publishes the GitHub Release
-# with the changelog entries for that version.
+# Runs when a version tag (made by `npm run release`) is pushed: checks it, then publishes the
+# GitHub Release with that version's changelog entry and a link to the full comparison.
 on:
   push:
     tags: ['v*']
@@ -21,9 +21,34 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - name: Check the tag
+        run: |
+          version="v$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "::error::The tag $GITHUB_REF_NAME does not match package.json ($version)."
+            exit 1
+          fi
+          git fetch --quiet origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::The tag $GITHUB_REF_NAME is not on main."
+            exit 1
+          fi
       - name: Notes for this version
-        run: npx --no-install git-cliff --latest --strip header --output RELEASE_NOTES.md
+        run: |
+          npx --no-install git-cliff --latest --strip all | sed '/./,$!d' > RELEASE_NOTES.md
+          previous="$(git describe --tags --abbrev=0 --match 'v[0-9]*' "$GITHUB_REF_NAME^" 2>/dev/null || true)"
+          if [ -n "$previous" ]; then
+            printf '\n**Full changelog**: https://github.com/%s/compare/%s...%s\n' \
+              "$GITHUB_REPOSITORY" "$previous" "$GITHUB_REF_NAME" >> RELEASE_NOTES.md
+          fi
+          cat RELEASE_NOTES.md
       - name: Publish the GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "The release $GITHUB_REF_NAME already exists; nothing to do."
+            exit 0
+          fi
+          gh release create "$GITHUB_REF_NAME" --verify-tag --latest \
+            --title "$GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
