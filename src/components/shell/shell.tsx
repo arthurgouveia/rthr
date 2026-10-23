@@ -1,6 +1,7 @@
 'use client';
 
 import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { RippleBackground } from '@/components/ripple-background/ripple-background';
 import { Footer } from '@/components/shell/footer';
 import { Header } from '@/components/shell/header';
 import { Sidebar } from '@/components/shell/sidebar';
@@ -53,9 +54,13 @@ export function Shell({ children }: Props) {
       <div className={styles.body}>
         <Sidebar currentId={page.id} onNavigate={go} />
 
-        <main className={styles.main} id={MAIN_ID} ref={mainRef} tabIndex={-1}>
-          <div className={cx(styles.stage, leaving && styles.leaving)}>{children}</div>
-        </main>
+        {/* the ripple sits behind <main>, which scrolls, so it stays put while the page moves */}
+        <div className={styles.content}>
+          <RippleBackground />
+          <main className={styles.main} id={MAIN_ID} ref={mainRef} tabIndex={-1}>
+            <div className={cx(styles.stage, leaving && styles.leaving)}>{children}</div>
+          </main>
+        </div>
       </div>
 
       <Footer
