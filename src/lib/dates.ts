@@ -82,6 +82,22 @@ export function describeMonths(months: number) {
   return `${extra <= 2 && halves % 2 === 0 ? 'just over' : 'over'} ${inHalfYears(halves)}`;
 }
 
+// A length of time, rounded down to whole years (or months, under a year), the short way:
+// "~9 yrs" to show, and "about nine years" to say aloud, since a screen reader reads ~ as "tilde".
+export function approximate(months: number) {
+  if (months < 12) {
+    return {
+      label: `~${months} mo`,
+      spoken: `about ${months === 1 ? 'a month' : `${numberWord(months)} months`}`,
+    };
+  }
+  const years = Math.floor(months / 12);
+  return {
+    label: `~${years} ${years === 1 ? 'yr' : 'yrs'}`,
+    spoken: `about ${years === 1 ? 'a year' : `${numberWord(years)} years`}`,
+  };
+}
+
 // One to thirty as a word; bigger numbers stay digits.
 export const numberWord = (n: number) => WORDS[n] ?? String(n);
 

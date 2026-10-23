@@ -6,3 +6,9 @@
   font-size: var(--text-xs);
   color: var(--soft);
 }
+/* the accent as a fill, with the text colour that is made for sitting on it */
+.filled {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}

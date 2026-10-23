@@ -82,6 +82,10 @@
     margin: 0;
     color: var(--strong);
   }
+  & .suffix {
+    margin-left: var(--space-xs);
+    white-space: nowrap;
+  }
   @media (max-width: 767px) {
     grid-template-columns: var(--space-md) minmax(0, 1fr);
     row-gap: var(--space-2xs);

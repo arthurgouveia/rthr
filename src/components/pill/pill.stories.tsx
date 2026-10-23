@@ -19,3 +19,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Public: Story = {};
 export const Fork: Story = { args: { children: 'fork' } };
+export const Filled: Story = { args: { children: '~9 yrs', filled: true } };

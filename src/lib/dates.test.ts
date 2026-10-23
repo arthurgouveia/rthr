@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { capitalise, describeMonths, formatDate, formatRange, monthsBetween } from './dates';
+import {
+  approximate,
+  capitalise,
+  describeMonths,
+  formatDate,
+  formatRange,
+  monthsBetween,
+} from './dates';
 
 const NOW = '2026-10';
 
@@ -38,5 +45,13 @@ describe('dates', () => {
 
   it('capitalises the first letter only', () => {
     expect(capitalise('just over a year')).toBe('Just over a year');
+  });
+
+  it('rounds a length down for the short form, and words it for screen readers', () => {
+    expect(approximate(1)).toEqual({ label: '~1 mo', spoken: 'about a month' });
+    expect(approximate(6)).toEqual({ label: '~6 mo', spoken: 'about six months' });
+    expect(approximate(18)).toEqual({ label: '~1 yr', spoken: 'about a year' });
+    expect(approximate(108)).toEqual({ label: '~9 yrs', spoken: 'about nine years' });
+    expect(approximate(119)).toEqual({ label: '~9 yrs', spoken: 'about nine years' });
   });
 });

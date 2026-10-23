@@ -1,7 +1,14 @@
 import type { ReactNode } from 'react';
+import { cx } from '@/lib/cx';
 import styles from './pill.module.css';
 
-// A small outlined label, such as "public" or "fork".
-export function Pill({ children }: { children: ReactNode }) {
-  return <span className={styles.pill}>{children}</span>;
+type Props = {
+  children: ReactNode;
+  // Filled with the accent colour instead of outlined.
+  filled?: boolean;
+};
+
+// A small rounded label, such as "public" or "fork" (outlined) or a length of time (filled).
+export function Pill({ children, filled }: Props) {
+  return <span className={cx(styles.pill, filled && styles.filled)}>{children}</span>;
 }

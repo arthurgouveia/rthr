@@ -1,13 +1,33 @@
+import { Fragment } from 'react';
 import { PageFrame } from '@/components/page-frame/page-frame';
+import { Pill } from '@/components/pill/pill';
 import { TypedText } from '@/components/terminal/typed-text';
-import { content, pageById } from '@/lib/content';
+import { content, pageById, type StatusSuffix as StatusSuffixValue } from '@/lib/content';
 import { cssVars } from '@/lib/css-vars';
 import { statusTimeline } from '@/lib/typing';
+import { statusSuffix } from '@/lib/work';
 import typing from '@/styles/typing.module.css';
 import styles from './home-view.module.css';
 
 // Ticks the cursor lingers after each status key before its value fades in.
 const KEY_LINGER = 3;
+
+// The pill after a status value. Read out as "Shopify for about nine years", not "Shopify ~9 yrs".
+function StatusSuffix({ suffix }: { suffix: StatusSuffixValue | undefined }) {
+  const shown = statusSuffix(suffix);
+  if (!shown) return null;
+  return (
+    <>
+      {' '}
+      <span className={styles.suffix}>
+        <Pill filled>
+          <span className='sr'>for {shown.spoken}</span>
+          <span aria-hidden='true'>{shown.label}</span>
+        </Pill>
+      </span>
+    </>
+  );
+}
 
 export function HomeView() {
   const { command } = pageById('index');
@@ -16,7 +36,14 @@ export function HomeView() {
     <PageFrame className={styles.home} command={command}>
       <div className={styles.intro}>
         <h1 className={styles.name}>{content.site.name}</h1>
-        <p className={styles.tagline}>{content.index.tagline}</p>
+        <p className={styles.tagline}>
+          {content.index.tagline.map((line, i) => (
+            <Fragment key={line}>
+              {i > 0 && <br />}
+              {line}
+            </Fragment>
+          ))}
+        </p>
       </div>
       <div className={styles.status}>
         <dl>
@@ -34,6 +61,7 @@ export function HomeView() {
                 style={cssVars({ '--at': line.at + line.key.length + KEY_LINGER })}
               >
                 {line.value}
+                <StatusSuffix suffix={line.suffix} />
               </dd>
             </div>
           ))}
