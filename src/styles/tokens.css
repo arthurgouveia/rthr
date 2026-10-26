@@ -108,6 +108,9 @@
   --accent-blood: #e0473c;
   --accent-flame: #f2762e;
   --accent-saffron: #f0b429;
+  --avatar-tile: var(--accent); /* the portrait: an accent tile, inked in the page colour */
+  --avatar-ink: var(--bg);
+  --avatar-glint: var(--fg); /* the highlight sweeping across the lenses */
 }
 
 /* ---- Lame (the light theme) ---- */
@@ -123,6 +126,9 @@
   --accent-blood: #a3241b;
   --accent-flame: #a9470a;
   --accent-saffron: #8a6100;
+  --avatar-tile: transparent; /* the portrait: no tile, inked in the accent */
+  --avatar-ink: var(--accent);
+  --avatar-glint: var(--bg);
 }
 
 /* ---- Accent: one of the three accents, whichever theme is active ---- */
