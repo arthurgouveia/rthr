@@ -49,6 +49,8 @@
 }
 .meta {
   padding-left: var(--space-lg);
+  /* As wide as its widest line (the links); the portrait fills that width. */
+  width: fit-content;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);

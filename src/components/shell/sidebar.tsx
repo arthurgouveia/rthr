@@ -1,3 +1,4 @@
+import { Avatar } from '@/components/avatar/avatar';
 import { content } from '@/lib/content';
 import { NavLinks, type NavProps } from './nav-links';
 import styles from './sidebar.module.css';
@@ -9,6 +10,7 @@ export function Sidebar(props: NavProps) {
       <NavLinks {...props} className={styles.link} label='file' />
       <div className={styles.spacer} />
       <div className={styles.meta}>
+        <Avatar label={`Portrait of ${content.site.name}`} />
         <span>{content.site.location}</span>
         <span>
           <a href={content.site.links.github}>github</a> ·{' '}
