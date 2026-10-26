@@ -3,6 +3,12 @@
 All notable changes to this site are documented here. Versions follow [semver](https://semver.org/)
 and are worked out from the commits; see the README, "Releases".
 
+## [1.2.0] - 2026-10-26
+
+### Features
+
+- Show an animated portrait in the sidebar ([0cbd9b9](https://github.com/arthurgouveia/rthr/commit/0cbd9b9b0296543ddc1f6b7a293df6f3339badb4))
+
 ## [1.1.0] - 2026-10-26
 
 ### Features
@@ -35,6 +41,7 @@ and are worked out from the commits; see the README, "Releases".
 - Add terminal, list and detail components ([80448f5](https://github.com/arthurgouveia/rthr/commit/80448f5d719a66e3176f513a3a8caa71927659bd))
 - Add app shell and token editor ([c5ee269](https://github.com/arthurgouveia/rthr/commit/c5ee26950d9986276fe3d58eb226f91e29f33475))
 
+[1.2.0]: https://github.com/arthurgouveia/rthr/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/arthurgouveia/rthr/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/arthurgouveia/rthr/releases/tag/v1.0.0
 
