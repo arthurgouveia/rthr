@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.2",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.3",
     "@emnapi/core": "^1.11.3",
@@ -58,7 +58,7 @@
     "playwright": "^1.64.0",
     "storybook": "^10.6.3",
     "typescript": "^7.0.2",
-    "vite": "^8.3.4",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5"
   },
   "engines": {
